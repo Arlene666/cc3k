@@ -1,5 +1,5 @@
 #include "grid.h"
-#include "ifstream"
+#include "fstream"
 #include "iostream"
 
 using namespace std;

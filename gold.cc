@@ -13,6 +13,8 @@ void Gold::usedDefault(Player &p) {
 }
 
 friend std::ostream &operator<<(std::stream &out, Gold &i){
-  out << 'G';
+  if (i.exist()) {
+      out << 'G';
+  }
   return out;
 }

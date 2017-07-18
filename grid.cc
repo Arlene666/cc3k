@@ -9,7 +9,7 @@ void Grid::loadstage(){
         char c;
         in >> std::noskipws >> c;
         if(c == '|' || c == '-' || c == ' ' || c == '+' || c == '#' || c == '.'){
-          row.push_back(Cell(c));
+          row.push_back(Cell(x, y, c));
         }else{
           std::shared_ptr<Object> o;
           if(c == '@'){
@@ -61,7 +61,7 @@ void Grid::loadstage(){
           }else if(c == 'L'){
             o = std::make_shared<Halfling>();
           }
-          row.push_back(Cell(c, o));
+          row.push_back(Cell(x, y, '.', o));
         }
       }
       cells.push_back(row);
@@ -71,12 +71,49 @@ void Grid::loadstage(){
   }
 }
 
+std::string Grid::getType(Enemy &e){ return "Enemy"; }
+std::string Grid::getType(Potion &i){ return "Potion"; }
+std::string Grid::getType(Gold &i){ return "Gold"; }
+
+Cell &Grid::getCell(std::string command, int x, int y){
+  // Command: "no", "so". "ea". "we", "ne", "nw", "se", "sw"
+  if (command == "no" && x > 0) return cells[x-1][y];
+  else if(command == "so" && x < height-1) return cells[x+1][y];
+  else if(command == "ea" && y < width -1) return cells[x][y+1];
+  else if(command == "we" && y > 0) return cells[x][y-1];
+  else if(command == "ne" && x > 0 && y < width -1) return cells[x-1][y+1];
+  else if(command == "nw" && x > 0 && y > 0) return cells[x-1][y-1];
+  else if(command == "se" && x < height-1 && y < width -1) return cells[x+1][y+1];
+  else if(command == "sw" && x < height-1 && y > 0) return cells[x+1][y-1];
+  else return NULL;
+}
+
 void Grid::movePlayer(std::string command){
-  if()
+  Cell &c = this->getCell(command, playerPosX, playerPosY);
+  if(c != NULL && c.getTile() != '|' && c.getTile() != ' ' && c.getTile() != '-'){
+    if(c.getObject() == nullptr){
+      std::swap(this->cells[playerPosX][playerPosY].getObject(), c.getObject());
+      playerPosX = c.getX();
+      playerPosY = c.getY();
+    }else if(getType(*c.getObject()) == "Gold"){
+      this->cells[playerPosX][playerPosY].getObject()->use(*c.getObject());
+      c.getObject() = nullptr;
+      std::swap(this->cells[playerPosX][playerPosY].getObject(), c.getObject());
+      playerPosX = c.getX();
+      playerPosY = c.getY();
+    }else if(getType(*c.getObject()) == "Potion"){
+
+    }
+  }
 }
 
 void Grid::attackEnemy(std::string command){
+  Cell &c = this->getCell(command.substr(1), playerPosX, playerPosY);
+  if(c != NULL && c.getTile() != '|' && c.getTile() != ' ' && c.getTile() != '-'){
+    if(getType(*c.getObject()) == "Enemy"){
 
+    }
+  }
 }
 
 void Grid::useItem(std::string command){

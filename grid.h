@@ -35,6 +35,12 @@ class Grid{
   const int width = 79, height = 25;
   bool enemyCanMove;
 
+  Cell &getCell(std::string command, int x, int y);
+
+  std::string getType(Enemy &e);
+  std::string getType(Potion &i);
+  std::string getType(Gold &i);
+
 public:
   //ctor
   Grid(ifstream &in, char race): in{in}, race{race}, floor{0}, enemyCanMove{true} {}

@@ -35,7 +35,7 @@ void Elf::attackImpl(Goblin &p) override{
 
 Elf::~Elf(){}
 
-friend std::ostream &operator<<(std::stream &out, Elf &e){
+friend std::ostream &operator<<(std::ostream &out, Elf &e){
   out << 'E';
   return out;
 }

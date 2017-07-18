@@ -35,7 +35,7 @@ void Halfling::attackedImpl(Goblin &p){
 
 Halfling::~Halfling(){}
 
-friend std::ostream &operator<<(std::stream &out, Halfling &e){
+friend std::ostream &operator<<(std::ostream &out, Halfling &e){
   out << 'L';
   return out;
 }

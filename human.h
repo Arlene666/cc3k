@@ -6,7 +6,7 @@ class Human : public Enemy {
 public:
   Human(): Player{140, 20, 20} {}
   ~Human();
-  friend std::ostream &operator<<(std::stream &out, Human &e);
+  friend std::ostream &operator<<(std::ostream &out, Human &e);
 };
 
 #endif

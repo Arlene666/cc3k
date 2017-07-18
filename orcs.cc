@@ -7,7 +7,7 @@ void Orcs::attackImpl(Goblin &p) override {
 
 Orcs::~Orcs(){}
 
-friend std::ostream &operator<<(std::stream &out, Orcs &e){
+friend std::ostream &operator<<(std::ostream &out, Orcs &e){
   out << 'O';
   return out;
 }

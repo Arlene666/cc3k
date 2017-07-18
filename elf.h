@@ -11,7 +11,7 @@ protected:
 public:
   Elf(): Player{140, 30, 10} {}
   ~Elf();
-  friend std::ostream &operator<<(std::stream &out, Elf &e);
+  friend std::ostream &operator<<(std::ostream &out, Elf &e);
 };
 
 #endif

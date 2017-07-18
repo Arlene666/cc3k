@@ -8,7 +8,7 @@ protected:
 public:
   Dwarf(): Player{100, 20, 30} {}
   ~Dwarf();
-  friend std::ostream &operator<<(std::stream &out, Dwarf &e);
+  friend std::ostream &operator<<(std::ostream &out, Dwarf &e);
 };
 
 #endif

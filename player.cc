@@ -17,7 +17,7 @@ int &Player::getDef() const { return def; }
 int &Player::getGold() const { return gold; }
 int Player::getDfHP() const { return initHp; }
 
-friend std::ostream &operator<<(std::stream &out, Player &p){
+friend std::ostream &operator<<(std::ostream &out, Player &p){
   out << '@';
   return out;
 }

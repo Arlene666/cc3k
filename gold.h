@@ -9,5 +9,5 @@ class Gold : public Item {
     void usedDefault(Player &p) override;
   public:
     Gold(int n);
-    friend std::ostream &operator<<(std::stream &out, Gold &i);
+    friend std::ostream &operator<<(std::ostream &out, Gold &i);
 };

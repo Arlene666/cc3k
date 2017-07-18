@@ -12,7 +12,7 @@ protected:
 public:
   Halfling(): Player{100, 15, 20} {}
   ~Halfling();
-  friend std::ostream &operator<<(std::stream &out, Halfling &e);
+  friend std::ostream &operator<<(std::ostream &out, Halfling &e);
 };
 
 #endif

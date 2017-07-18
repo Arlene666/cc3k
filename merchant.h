@@ -6,7 +6,7 @@ class Merchant : public Enemy {
 public:
   Merchant(): Player{30, 70, 5} {}
   ~Merchant();
-  friend std::ostream &operator<<(std::stream &out, Merchant &e);
+  friend std::ostream &operator<<(std::ostream &out, Merchant &e);
 };
 
 #endif

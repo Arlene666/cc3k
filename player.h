@@ -41,7 +41,7 @@ public:
   //dtor
   virtual ~Player() = 0;
 
-  friend std::ostream &operator<<(std::stream &out, Player &p);
+  friend std::ostream &operator<<(std::ostream &out, Player &p);
 };
 
 #endif

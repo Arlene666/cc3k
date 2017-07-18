@@ -2,7 +2,7 @@
 
 Human::~Human(){}
 
-friend std::ostream &operator<<(std::stream &out, Human &e){
+friend std::ostream &operator<<(std::ostream &out, Human &e){
   out << 'H';
   return out;
 }

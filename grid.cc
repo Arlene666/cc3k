@@ -97,7 +97,7 @@ bool Grid::isPlaying(){
   return !cells[playerPosX][playerPosY]->getObject()->isDead();
 }
 
-friend std::ostream &operator<<(std::stream &out, Grid &g){
+friend std::ostream &operator<<(std::ostream &out, Grid &g){
   for(int x = 0; x < height; x++){
     for(int y = 0; y < width; y++){
       out << cells[x][y];

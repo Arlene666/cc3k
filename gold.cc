@@ -10,8 +10,7 @@ void Gold::usedDefault(Player &p) {
         p.getGold() += pile;
         isUsed = true;
     }
-}
-
+  
 friend std::ostream &operator<<(std::stream &out, Gold &i){
   if (i.exist()) {
       out << 'G';

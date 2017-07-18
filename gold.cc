@@ -12,7 +12,7 @@ void Gold::usedDefault(Player &p) {
     }
 }
 
-friend std::ostream &operator<<(std::stream &out, Gold &i){
+friend std::ostream &operator<<(std::ostream &out, Gold &i){
   out << 'G';
   return out;
 }

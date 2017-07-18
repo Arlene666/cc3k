@@ -7,7 +7,7 @@ void Dwarf::attackImpl(Player &p) override{
 
 Dwarf::~Dwarf(){}
 
-friend std::ostream &operator<<(std::stream &out, Dwarf &e){
+friend std::ostream &operator<<(std::ostream &out, Dwarf &e){
   out << 'D';
   return out;
 }

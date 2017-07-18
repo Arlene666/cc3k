@@ -3,7 +3,7 @@
 #include "item.h"
 
 class Potion : public Item {
-  friend std::ostream &operator<<(std::stream &out, Potion &i);
+  friend std::ostream &operator<<(std::ostream &out, Potion &i);
 };
 
 #endif

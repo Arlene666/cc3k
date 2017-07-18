@@ -1,8 +1,9 @@
 #ifndef GRID_H
 #define GRID_H
 #include "cell.h"
-#include <ifstream>
+#include <fstream>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class Object;
@@ -29,15 +30,15 @@ class WD;
 class Grid{
   std::vector<std::vector<Cell>> cells;
   ifstream in;
-  int playerPosX, playerPosY, floor;
   char race;
-  final int width = 79, height = 25;
+  int playerPosX, playerPosY, floor;
+  const int width = 79, height = 25;
   bool enemyCanMove;
 
 public:
   //ctor
-  Grid(ifstream &in, char race): in{in}, race{race} floor{0}, enemyCanMove{true} {}
-  Grid(char race): in{NULL}, race{race} floor{0}, enemyCanMove{true}{}
+  Grid(ifstream &in, char race): in{in}, race{race}, floor{0}, enemyCanMove{true} {}
+  //Grid(char race): in{NULL}, race{race}, floor{0}, enemyCanMove{true}{}
 
   void loadStage();
   //void reset();
@@ -54,7 +55,7 @@ public:
   void stopEnemy();
   bool isPlaying();
 
-  friend std::ostream &operator<<(std::stream &out, Grid &g);
+  friend std::ostream &operator<<(std::ostream &out, Grid &g);
 
   ~Grid();
 };

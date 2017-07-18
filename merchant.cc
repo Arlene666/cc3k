@@ -2,7 +2,7 @@
 
 Merchant::~Merchant(){}
 
-friend std::ostream &operator<<(std::stream &out, Merchant &e){
+friend std::ostream &operator<<(std::ostream &out, Merchant &e){
   out << 'M';
   return out;
 }

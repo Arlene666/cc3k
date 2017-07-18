@@ -8,7 +8,7 @@ protected:
 public:
   Orcs(): Player{180, 30, 25} {}
   ~Orcs();
-  friend std::ostream &operator<<(std::stream &out, Orcs &e);
+  friend std::ostream &operator<<(std::ostream &out, Orcs &e);
 };
 
 #endif

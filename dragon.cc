@@ -2,7 +2,4 @@
 
 Dragon::~Dragon(){}
 
-std::ostream &operator<<(std::ostream &out, Dragon &e){
-  out << 'D';
-  return out;
-}
+char Dragon::getChar(){ return 'D'; }

@@ -33,7 +33,4 @@ void Gold::used(Goblin &p){
   }
 }
 
-std::ostream &operator<<(std::ostream &out, Gold &i){
-  if (i.exist()) { out << 'G'; }
-  return out;
-}
+char Gold::getChar(){ return 'G'; }

@@ -44,7 +44,7 @@ public:
   bool exist();
 
   //dtor
-  virtual ~Enemy() = 0;
+  virtual ~Enemy() override{}
 
 };
 

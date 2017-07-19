@@ -54,20 +54,36 @@ Cell *Grid::getCell(std::string command, int x, int y){
   else return nullptr;
 }
 
+std::string getDirection(std::string command){
+  if (command == "no") return "North";
+  else if(command == "so") return "South";
+  else if(command == "ea") return "East";
+  else if(command == "we") return "West";
+  else if(command == "ne") return "North East";
+  else if(command == "nw") return "North West";
+  else if(command == "se") return "South East";
+  else if(command == "sw") return "South West";
+  else return "";
+}
+
 
 //****************public methods******************************
+
+Grid::Grid(shared_ptr<ifstream> in, char race): in{in}, race{race}, floor{0}, enemyCanMove{true} {
+  setPlayer();
+  loadStage();
+}
 
 void Grid::loadStage(){
   floor++;
   for(int x = 0; x < height; x++){
     vector<Cell> row;
+    char c;
     for(int y = 0; y < width; y++){
-      char c;
       *in >> std::noskipws >> c;
-      if(c == '|' || c == '-' || c == ' ' || c == '+' || c == '#' || c == '.'){
+      if(c == '|' || c == '-' || c == ' ' || c == '+' || c == '#' || c == '.' || c == '\\'){
         row.push_back(Cell(x, y, c));
       }else if(c == '@'){
-        setPlayer();
         pX = x;
         pY = y;
         row.push_back(Cell(x, y, c));
@@ -75,20 +91,33 @@ void Grid::loadStage(){
         row.push_back(Cell(x, y, '.', setObject(c)));
       }
     }
+    *in >> std::noskipws >> c;
     cells.push_back(row);
   }
 }
 
 void Grid::movePlayer(std::string command){
-  Cell *c = this->getCell(command, pX, pY);
+  message = "";
+  Cell *c = getCell(command, pX, pY);
   if(c != nullptr && c->getTile() != '|' && c->getTile() != ' ' && c->getTile() != '-'){
-    if(c->getObject() == nullptr){
-      std::swap(this->cells[pX][pY].getObject(), c->getObject());
+    message += "PC moves " + getDirection(command);
+    if(c->getTile() == '\\'){
+      message += "and walked up the stair "
+      if(floor < 5) {
+        loadStage();
+        message += "and arrived to the next floor. "
+      }else{
+        p->getHp() = 0;
+        message += "and conquered the dangeon. Congratulation! You Won! "
+      }
+    }else if(c->getObject() == nullptr){
+      std::swap(cells[pX][pY].getObject(), c->getObject());
       pX = c->getX();
       pY = c->getY();
     }else if(c->getObject()->whoAmI() == "Gold"){
       p->use(*dynamic_pointer_cast<Gold>(c->getObject()));
       if(!c->getObject()->exist()) c->getObject() = nullptr;
+      message += "and picked up a gold"
       pX = c->getX();
       pY = c->getY();
     }else if(c->getObject()->whoAmI() == "Potion"){
@@ -99,7 +128,8 @@ void Grid::movePlayer(std::string command){
 }
 
 void Grid::attackEnemy(std::string command){
-  Cell *c = this->getCell(command, pX, pY);
+  message = "";
+  Cell *c = getCell(command, pX, pY);
   if(c != nullptr && c->getObject() != nullptr && c->getObject()->whoAmI() == "Enemy"){
     p->attack(*dynamic_pointer_cast<Enemy>(c->getObject()));
     if(!c->getObject()->exist()) c->getObject() = nullptr;
@@ -107,7 +137,8 @@ void Grid::attackEnemy(std::string command){
 }
 
 void Grid::useItem(std::string command){
-  Cell *c = this->getCell(command, pX, pY);
+  message = "";
+  Cell *c = getCell(command, pX, pY);
   if(c != nullptr && c->getObject() != nullptr && c->getObject()->whoAmI() == "Potion"){
     p->use(*dynamic_pointer_cast<Potion>(c->getObject()));
     if(!c->getObject()->exist()) c->getObject() = nullptr;
@@ -129,7 +160,11 @@ void Grid::stopEnemy(){
 }
 
 bool Grid::isPlaying(){
-  return p->isDead();
+  return !p->isDead();
+}
+
+Grid::~Grid(){
+  cells.clear();
 }
 
 std::ostream &operator<<(std::ostream &out, Grid &g){
@@ -149,10 +184,10 @@ std::ostream &operator<<(std::ostream &out, Grid &g){
     case 't': out << "Troll"; break;
   }
   out << " Gold: " << g.p->getGold();
-  out << "\t\tFloor " << g.floor << endl;
+  out << "\t\t\t\tFloor " << g.floor << endl;
   out << "HP: " << g.p->getHp() << endl;
   out << "Atk: " << g.p->getAtk() << endl;
   out << "Def: " << g.p->getDef() << endl;
-  out << "Action: " << endl;
+  out << "Action: " << message << endl;
   return out;
 }

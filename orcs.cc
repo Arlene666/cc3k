@@ -9,7 +9,4 @@ void Orcs::attack(Goblin &p) {
   }
 }
 
-std::ostream &operator<<(std::ostream &out, Orcs &e){
-  out << 'O';
-  return out;
-}
+char Orcs::getChar(){ return 'O'; }

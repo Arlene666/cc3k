@@ -12,8 +12,8 @@ class Potion : public Item {
 public:
   Potion(): Item{true}{}
   std::string whoAmI(){ return "Potion"; }
-  virtual ~Potion(){};
-  friend std::ostream &operator<<(std::ostream &out, Potion &i);
+  char getChar() override;
+  virtual ~Potion() override{}
 };
 
 #endif

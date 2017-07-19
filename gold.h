@@ -17,7 +17,8 @@ class Gold : public Item {
     void used(Vampire &p) override;
     void used(Troll &p) override;
     void used(Goblin &p) override;
-    friend std::ostream &operator<<(std::ostream &out, Gold &i);
+    char getChar() override;
+    virtual ~Gold() override{}
 };
 
 #endif

@@ -2,28 +2,31 @@
 #include <fstream>
 #include <iostream>
 #include <memory>
+#include "grid.h"
 
 using namespace std;
 
 int main(int argc, char *argv[]){
   shared_ptr<Grid> g;
   shared_ptr<ifstream> in;
+  string fname;
 
   if(argc - 1 == 1){
-    //load stage file
-    string fname = argv[1];
-    in = make_shared<ifstream>(fname);
-    if (in->fail()){
-      cerr << "Stage file does not exist" << endl;
-      exit(1);
-    }
+    fname = argv[1];
   }else{
-    in = make_shared<ifstream>("cc3kfloor.txt");
+    fname = "cc3kfloor.txt";
+  }
+  // load stage file
+  in = make_shared<ifstream>(fname);
+  if (in->fail()){
+    cerr << "Stage file does not exist" << endl;
+    exit(1);
   }
 
   char c;
   string s;
   bool gameOver = false;
+
   while(!gameOver){
     // set the player race
     while(1){
@@ -37,12 +40,13 @@ int main(int argc, char *argv[]){
     while(g->isPlaying() && getline(cin, s)){
       if(s[0] == 'u'){
         g->useItem(s.substr(1));
-        cout << g;
+        cout << *g;
       }else if(s[0] == 'a'){
         g->attackEnemy(s.substr(1));
-        cout << g;
+        cout << *g;
       }else if(s[0] == 'f'){
-
+        g->stopEnemy();
+        cout << *g;
       }else if(s[0] == 'r'){
         gameOver = false;
         break;
@@ -51,7 +55,7 @@ int main(int argc, char *argv[]){
         break;
       }else{
         g->movePlayer(s);
-        cout << g;
+        cout << *g;
       }
     }
     if(!g->isPlaying()){

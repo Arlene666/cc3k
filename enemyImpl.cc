@@ -1,4 +1,4 @@
-#include "EnemyImpl.h"
+#include "enemyImpl.h"
 
 void EnemyImpl::defaultAttack(Player &p){
   if(rand()%2 == 0){

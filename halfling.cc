@@ -33,7 +33,4 @@ void Halfling::attacked(Goblin &p){
 
 Halfling::~Halfling(){}
 
-std::ostream &operator<<(std::ostream &out, Halfling &e){
-  out << 'L';
-  return out;
-}
+char Halfling::getChar(){ return 'L'; }

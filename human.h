@@ -5,8 +5,8 @@
 class Human : public EnemyImpl {
 public:
   Human(): EnemyImpl{140, 20, 20, 4} {}
+  char getChar() override;
   ~Human();
-  friend std::ostream &operator<<(std::ostream &out, Human &e);
 };
 
 #endif

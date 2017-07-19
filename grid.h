@@ -39,6 +39,7 @@ class Grid{
   char race;
   int pX, pY, floor;
   bool enemyCanMove;
+  std::string message;
 
   void setPlayer();
   shared_ptr<Object> setObject(char c);
@@ -46,11 +47,9 @@ class Grid{
 
 public:
   //ctor
-  Grid(shared_ptr<ifstream> in, char race): in{in}, race{race}, floor{0}, enemyCanMove{true} {}
-  //Grid(char race): in{NULL}, race{race}, floor{0}, enemyCanMove{true}{}
+  Grid(shared_ptr<ifstream> in, char race);
 
   void loadStage();
-  //void reset();
 
   // Command: "no", "so". "ea". "we", "ne", "nw", "se", "sw"
   void movePlayer(std::string command);

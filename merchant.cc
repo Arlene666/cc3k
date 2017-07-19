@@ -2,7 +2,4 @@
 
 Merchant::~Merchant(){}
 
-std::ostream &operator<<(std::ostream &out, Merchant &e){
-  out << 'M';
-  return out;
-}
+char Merchant::getChar(){ return 'M'; }

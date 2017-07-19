@@ -25,7 +25,7 @@ public:
   virtual void attacked(Vampire &p);
   virtual void attacked(Troll &p);
   virtual void attacked(Goblin &p);
-  virtual ~EnemyImpl(){}
+  virtual ~EnemyImpl() override{}
 };
 
 #endif

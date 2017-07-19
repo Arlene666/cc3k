@@ -22,7 +22,4 @@ void Elf::attack(Goblin &p){
   EnemyImpl::attack(p);
 }
 
-std::ostream &operator<<(std::ostream &out, Elf &e){
-  out << 'E';
-  return out;
-}
+char Elf::getChar(){ return 'E'; }

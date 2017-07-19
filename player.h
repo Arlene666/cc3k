@@ -32,9 +32,7 @@ public:
   int getDfHp() const;
 
   //dtor
-  virtual ~Player() = 0;
-
-  friend std::ostream &operator<<(std::ostream &out, Player &p);
+  virtual ~Player(){}
 };
 
 #endif

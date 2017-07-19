@@ -11,8 +11,3 @@ int &Player::getAtk() { return atk; }
 int &Player::getDef() { return def; }
 int &Player::getGold() { return gold; }
 int Player::getDfHp() const { return initHp; }
-
-std::ostream &operator<<(std::ostream &out, Player &p){
-  out << '@';
-  return out;
-}

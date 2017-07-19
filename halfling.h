@@ -10,8 +10,8 @@ public:
   void attacked(Vampire &p) override;
   void attacked(Troll &p) override;
   void attacked(Goblin &p) override;
+  char getChar() override;
   ~Halfling();
-  friend std::ostream &operator<<(std::ostream &out, Halfling &e);
 };
 
 #endif

@@ -5,8 +5,8 @@
 class Dragon : public EnemyImpl {
 public:
   Dragon(): EnemyImpl{150, 20, 20, 0} {}
+  char getChar() override;
   ~Dragon();
-  friend std::ostream &operator<<(std::ostream &out, Dragon &e);
 };
 
 #endif

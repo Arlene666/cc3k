@@ -10,6 +10,7 @@ class BD : public Potion {
     void used(Vampire &p) override;
     void used(Troll &p) override;
     void used(Goblin &p) override;
+    ~BD() override{}
 };
 
 

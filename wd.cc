@@ -1,30 +1,29 @@
 #include "wd.h"
-#include <utility>
 
-WD::WD():isUsable{true}, isUsed{false} {}
+WD::WD(): Potion{} {}
 
-void WD::used(Shade &p) override{
+void WD::used(Shade &p){
   int &def = p.getDef();
-  def = max(def-5, 0);
+  def = std::max(def-5, 0);
   isUsed = true;
 }
-void WD::used(Drow &p) override{
+void WD::used(Drow &p){
   int &def = p.getDef();
-  def = max(def-7, 0);
+  def = std::max(def-7, 0);
   isUsed = true;
 }
-void WD::used(Vampire &p) override{
+void WD::used(Vampire &p){
   int &def = p.getDef();
-  def = max(def-5, 0);
+  def = std::max(def-5, 0);
   isUsed = true;
 }
-void WD::used(Troll &p) override{
+void WD::used(Troll &p){
   int &def = p.getDef();
-  def = max(def-5, 0);
+  def = std::max(def-5, 0);
   isUsed = true;
 }
-void WD::used(Goblin &p) override{
+void WD::used(Goblin &p){
   int &def = p.getDef();
-  def = max(def-5, 0);
+  def = std::max(def-5, 0);
   isUsed = true;
 }

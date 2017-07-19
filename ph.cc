@@ -1,34 +1,33 @@
 #include "ph.h"
-#include <utility>
 
-PH::PH():isUsable{true}, isUsed{false} {}
+PH::PH(): Potion{} {}
 
-void PH::used(Shade &p) override{
-  int &hp = p.getHP();
-  hp = max(hp-10, 0);
+void PH::used(Shade &p){
+  int &Hp = p.getHp();
+  Hp = std::max(Hp-10, 0);
   isUsed = true;
 }
 
-void PH::used(Drow &p) override{
-  int &hp = p.getHP();
-  hp = max(hp-15, 0);
+void PH::used(Drow &p){
+  int &Hp = p.getHp();
+  Hp = std::max(Hp-15, 0);
   isUsed = true;
 }
 
-void PH::used(Vampire &p) override{
-  int &hp = p.getHP();
-  hp = max(hp-10, 0);
+void PH::used(Vampire &p){
+  int &Hp = p.getHp();
+  Hp = std::max(Hp-10, 0);
   isUsed = true;
 }
 
-void PH::used(Troll &p) override{
-  int &hp = p.getHP();
-  hp = max(hp-10, 0);
+void PH::used(Troll &p){
+  int &Hp = p.getHp();
+  Hp = std::max(Hp-10, 0);
   isUsed = true;
 }
 
-void PH::used(Goblin &p) override{
-  int &hp = p.getHP();
-  hp = max(hp-10, 0);
+void PH::used(Goblin &p){
+  int &Hp = p.getHp();
+  Hp = std::max(Hp-10, 0);
   isUsed = true;
 }

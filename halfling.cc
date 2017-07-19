@@ -1,41 +1,39 @@
 #include "halfling.h"
 
-void Halfling::attacked(Shade &p) override{
+void Halfling::attacked(Shade &p){
   if(rand()%2 == 0){
-    Enemy::attack(p);
+    EnemyImpl::attack(p);
   }
 }
 
-void Halfling::attacked(Drow &p) override{
+void Halfling::attacked(Drow &p){
   if(rand()%2 == 0){
-    Enemy::attack(p);
+    EnemyImpl::attack(p);
   }
 }
 
-void Halfling::attacked(Vampire &p) override{
+void Halfling::attacked(Vampire &p){
   if(rand()%2 == 0){
-    Enemy::attack(p);
+    EnemyImpl::attack(p);
   }
 }
 
-void Halfling::attacked(Troll &p) override{
+void Halfling::attacked(Troll &p){
   if(rand()%2 == 0){
-    int newHp = this->getHp() - damage(p.getAtk(), this->getDef());
-    this->getHp() = (newHp >= 0) newHp : 0;
+    defaultAttacked(p);
   }
   p.getHp() = (p.getHp() + 5 > p.getDfHp())? p.getDfHp() : p.getHp() + 5;
-  if(this->getHp() <= 0) p.getGold() += rand()%2 + 1;
 }
 
-void Halfling::attacked(Goblin &p) override{
+void Halfling::attacked(Goblin &p){
   if(rand()%2 == 0){
-    Enemy::attack(p);;
+    EnemyImpl::attack(p);;
   }
 }
 
 Halfling::~Halfling(){}
 
-friend std::ostream &operator<<(std::ostream &out, Halfling &e){
+std::ostream &operator<<(std::ostream &out, Halfling &e){
   out << 'L';
   return out;
 }

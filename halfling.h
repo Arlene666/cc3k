@@ -1,10 +1,10 @@
 #ifndef HALFLING_H
 #define HALFLING_H
-#include "enemy.h"
+#include "enemyImpl.h"
 
-class Halfling : public Enemy {
+class Halfling : public EnemyImpl {
 public:
-  Halfling(): Enemy{100, 15, 20} {}
+  Halfling(): EnemyImpl{100, 15, 20, rand()%2+1} {}
   void attacked(Shade &p) override;
   void attacked(Drow &p) override;
   void attacked(Vampire &p) override;

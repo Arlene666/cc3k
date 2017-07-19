@@ -25,10 +25,10 @@ shared_ptr<Object> Grid::setObject(char c){
     case '3': o = std::make_shared<PH>(); break;
     case '4': o = std::make_shared<WA>(); break;
     case '5': o = std::make_shared<WD>(); break;
-    case '6': o = std::make_shared<Gold>(2); break;
-    case '7': o = std::make_shared<Gold>(1); break;
-    case '8': o = std::make_shared<Gold>(4); break;
-    case '9': o = std::make_shared<Gold>(6); break;
+    case '6': o = std::make_shared<Gold>(2, true); break;
+    case '7': o = std::make_shared<Gold>(1, true); break;
+    case '8': o = std::make_shared<Gold>(4, true); break;
+    case '9': o = std::make_shared<Gold>(6, false); break;
     case 'H': o = std::make_shared<Human>(); break;
     case 'w': o = std::make_shared<Dwarf>(); break;
     case 'E': o = std::make_shared<Elf>(); break;

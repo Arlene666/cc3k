@@ -1,8 +1,8 @@
-#include "merchant.h"
+#include "dragon.h"
 
 Dragon::~Dragon(){}
 
-friend std::ostream &operator<<(std::ostream &out, Dragon &e){
+std::ostream &operator<<(std::ostream &out, Dragon &e){
   out << 'D';
   return out;
 }

@@ -1,10 +1,10 @@
 #ifndef ORCS_H
 #define ORCS_H
-#include "enemy.h"
+#include "enemyImpl.h"
 
-class Orcs : public Enemy {
+class Orcs : public EnemyImpl {
 public:
-  Orcs(): Enemy{180, 30, 25} {}
+  Orcs(): EnemyImpl{180, 30, 25, rand()%2+1} {}
   void attack(Goblin &p) override;
   ~Orcs();
   friend std::ostream &operator<<(std::ostream &out, Orcs &e);

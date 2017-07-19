@@ -1,40 +1,39 @@
 #include "gold.h"
 
+Gold::Gold(int n, bool isUsable): Item{isUsable}, pile{n} {}
 
-Gold::Gold(int n): isUsable{false}, isUsed{false}, pile{n} {}
-
-void Gold::used(Shade &p) override{
+void Gold::used(Shade &p){
   if(isUsable){
     p.getGold() += pile;
     isUsed = true;
   }
 }
-void Gold::used(Drow &p) override{
+void Gold::used(Drow &p){
   if(isUsable){
     p.getGold() += pile;
     isUsed = true;
   }
 }
-void Gold::used(Vampire &p) override{
+void Gold::used(Vampire &p){
   if(isUsable){
     p.getGold() += pile;
     isUsed = true;
   }
 }
-void Gold::used(Troll &p) override{
+void Gold::used(Troll &p){
   if(isUsable){
     p.getGold() += pile;
     isUsed = true;
   }
 }
-void Gold::used(Goblin &p) override{
+void Gold::used(Goblin &p){
   if(isUsable){
     p.getGold() += pile;
     isUsed = true;
   }
 }
 
-std::ostream &operator<<(std::stream &out, Gold &i){
+std::ostream &operator<<(std::ostream &out, Gold &i){
   if (i.exist()) { out << 'G'; }
   return out;
 }

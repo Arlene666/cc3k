@@ -1,10 +1,10 @@
 #ifndef DWARF_H
 #define DWARF_H
-#include "enemy.h"
+#include "enemyImpl.h"
 
-class Dwarf : public Enemy {
+class Dwarf : public EnemyImpl {
 public:
-  Dwarf(): Enemy{100, 20, 30} {}
+  Dwarf(): EnemyImpl{100, 20, 30, rand()%2+1} {}
   void attacked(Vampire &p) override;
   ~Dwarf();
   friend std::ostream &operator<<(std::ostream &out, Dwarf &e);

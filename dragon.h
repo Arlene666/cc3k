@@ -1,10 +1,10 @@
 #ifndef DRAGON_H
 #define DRAGON_H
-#include "enemy.h"
+#include "enemyImpl.h"
 
-class Dragon : public Enemy {
+class Dragon : public EnemyImpl {
 public:
-  Dragon(): Enemy{150, 20, 20} {}
+  Dragon(): EnemyImpl{150, 20, 20, 0} {}
   ~Dragon();
   friend std::ostream &operator<<(std::ostream &out, Dragon &e);
 };

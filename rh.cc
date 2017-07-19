@@ -1,30 +1,29 @@
 #include "rh.h"
-#include <utility>
 
-RH::RH():isUsable{true}, isUsed{false} {}
+RH::RH(): Potion{} {}
 
-void RH::used(Shade &p) override{
+void RH::used(Shade &p){
   int &hp = p.getHp();
-  hp = max(hp+10, p.getDfHp());
+  hp = std::max(hp+10, p.getDfHp());
   isUsed = true;
 }
-void RH::used(Drow &p) override{
+void RH::used(Drow &p){
   int &hp = p.getHp();
-  hp = max(hp+15, p.getDfHp());
+  hp = std::max(hp+15, p.getDfHp());
   isUsed = true;
 }
-void RH::used(Vampire &p) override{
+void RH::used(Vampire &p){
   int &hp = p.getHp();
-  hp = max(hp+10, p.getDfHp());
+  hp = std::max(hp+10, p.getDfHp());
   isUsed = true;
 }
-void RH::used(Troll &p) override{
+void RH::used(Troll &p){
   int &hp = p.getHp();
-  hp = max(hp+10, p.getDfHp());
+  hp = std::max(hp+10, p.getDfHp());
   isUsed = true;
 }
-void RH::used(Goblin &p) override{
+void RH::used(Goblin &p){
   int &hp = p.getHp();
-  hp = max(hp+10, p.getDfHp());
+  hp = std::max(hp+10, p.getDfHp());
   isUsed = true;
 }

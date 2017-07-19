@@ -11,14 +11,15 @@ class Troll;
 class Goblin;
 
 class Enemy : public Object{
-  int hp, atk, def; // status
+  int hp, atk, def, drop; // status
 
+protected:
   int damage(int atk, int def);
 
 public:
 
   //ctor
-  Enemy(int hp, int atk, int def): hp{hp}, atk{atk}, def{def}{}
+  Enemy(int hp, int atk, int def, int drop): hp{hp}, atk{atk}, def{def}, drop{drop}{}
 
   //Visitor Pattern: visitor
   virtual void attack(Shade &p) = 0;
@@ -36,6 +37,7 @@ public:
   int &getHp(){ return hp; }
   int &getAtk(){ return atk; }
   int &getDef(){ return def; }
+  int &getDrop(){ return drop; }
 
   std::string whoAmI(){ return "Enemy"; }
 

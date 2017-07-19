@@ -1,23 +1,30 @@
 #include "rh.h"
 #include <utility>
 
-
 RH::RH():isUsable{true}, isUsed{false} {}
 
-void RH::usedDefault(Player &p) {
-    int &hp = p.getHP();
-    int &dfhp = p.getDfHP();
-    hp = max(hp+10, dfhp);
-    isUsed = true;
+void RH::used(Shade &p) override{
+  int &hp = p.getHp();
+  hp = max(hp+10, p.getDfHp());
+  isUsed = true;
 }
-
-
-void RH:usedImpl(Drow &d) {
-    int &hp = p.getHP();
-    int &dfhp = p.getDfHP();
-    hp = max(hp+10*1.5, dfhp);
-    isUsed = true;
+void RH::used(Drow &p) override{
+  int &hp = p.getHp();
+  hp = max(hp+15, p.getDfHp());
+  isUsed = true;
 }
-
-
-
+void RH::used(Vampire &p) override{
+  int &hp = p.getHp();
+  hp = max(hp+10, p.getDfHp());
+  isUsed = true;
+}
+void RH::used(Troll &p) override{
+  int &hp = p.getHp();
+  hp = max(hp+10, p.getDfHp());
+  isUsed = true;
+}
+void RH::used(Goblin &p) override{
+  int &hp = p.getHp();
+  hp = max(hp+10, p.getDfHp());
+  isUsed = true;
+}

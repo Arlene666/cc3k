@@ -3,14 +3,13 @@
 #include "enemy.h"
 
 class Halfling : public Enemy {
-protected:
-  void attackedImpl(Shade &p);
-  void attackedImpl(Drow &p);
-  void attackedImpl(Vampire &p);
-  void attackedImpl(Troll &p);
-  void attackedImpl(Goblin &p);
 public:
   Halfling(): Enemy{100, 15, 20} {}
+  void attacked(Shade &p) override;
+  void attacked(Drow &p) override;
+  void attacked(Vampire &p) override;
+  void attacked(Troll &p) override;
+  void attacked(Goblin &p) override;
   ~Halfling();
   friend std::ostream &operator<<(std::ostream &out, Halfling &e);
 };

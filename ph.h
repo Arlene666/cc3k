@@ -6,11 +6,12 @@
 class PH : public Potion {
     public:
     PH();
-    protected:
-    void usedDefault(Player &p) override;
-    void usedImpl(Drow &d) override;
+    void used(Shade &p) override;
+    void used(Drow &p) override;
+    void used(Vampire &p) override;
+    void used(Troll &p) override;
+    void used(Goblin &p) override;
 };
 
 
 #endif
-

@@ -1,24 +1,30 @@
 #include "wd.h"
+#include <utility>
 
 WD::WD():isUsable{true}, isUsed{false} {}
 
-void WD::usedDefault(Player &p) {
-    int &def = p.getDef();
-    if (def - 5 < 0) {
-        def = 0;
-    } else {
-        def -= 5;
-    }
-    isUsed = true;
+void WD::used(Shade &p) override{
+  int &def = p.getDef();
+  def = max(def-5, 0);
+  isUsed = true;
 }
-
-
-void WD::usedImpl(Drow &d) {
-    int &def = d.getDef();
-    if (def - 7 < 0) {
-        def = 0;
-    } else {
-        def -= 7;
-    }
-    isUsed = true;
+void WD::used(Drow &p) override{
+  int &def = p.getDef();
+  def = max(def-7, 0);
+  isUsed = true;
+}
+void WD::used(Vampire &p) override{
+  int &def = p.getDef();
+  def = max(def-5, 0);
+  isUsed = true;
+}
+void WD::used(Troll &p) override{
+  int &def = p.getDef();
+  def = max(def-5, 0);
+  isUsed = true;
+}
+void WD::used(Goblin &p) override{
+  int &def = p.getDef();
+  def = max(def-5, 0);
+  isUsed = true;
 }

@@ -3,6 +3,7 @@
 #include "item.h"
 
 class Potion : public Item {
+  std::string whoAmI(){ return "Potion"; }
   friend std::ostream &operator<<(std::ostream &out, Potion &i);
 };
 

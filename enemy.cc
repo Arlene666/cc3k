@@ -1,82 +1,85 @@
 #include "enemy.h"
+#include <cstdlib>
+#include <cmath>
 
+//*********private methods**********************************
 
-// public methods
-
-void Enemy::attack(Player &p){
-  attackImpl(p);
+int Enemy::damage(int atk, int def){
+  return ceil((100/(100+def))*atk);
 }
 
-void Enemy::attacked(Player &p){
-  attackImpl(p);
-}
+//********public methods***********************************
 
-bool Enemy::isDead(){
-  return hp <= 0;
-}
-
-
-// protected methods
-
-void Enemy::defaultAttack(Player &p){
-  int newHp = p.getHp() - ceiling((100/(100+p.getDef()))*this->getAtk());
-  p.getHp() = (newHp >= 0) newHp : 0;
-}
-
-virtual void Enemy::attackImpl(Shade &p){
+void Enemy::attack(Shade &p){
   if(rand()%2 == 0){
-    defaultAttack(p);
+    int newHp = p.getHp() - damage(this->getAtk(), p.getDef());
+    p.getHp() = (newHp >= 0) newHp : 0;
   }
 }
 
-virtual void Enemy::attackImpl(Drow &p){
+void Enemy::attack(Drow &p){
   if(rand()%2 == 0){
-    defaultAttack(p);
+    int newHp = p.getHp() - damage(this->getAtk(), p.getDef());
+    p.getHp() = (newHp >= 0) newHp : 0;
   }
 }
 
-virtual void Enemy::attackImpl(Vampire &p){
+void Enemy::attack(Vampire &p){
   if(rand()%2 == 0){
-    defaultAttack(p);
+    int newHp = p.getHp() - damage(this->getAtk(), p.getDef());
+    p.getHp() = (newHp >= 0) newHp : 0;
   }
 }
 
-virtual void Enemy::attackImpl(Troll &p){
+void Enemy::attack(Troll &p){
   if(rand()%2 == 0){
-    defaultAttack(p);
+    int newHp = p.getHp() - damage(this->getAtk(), p.getDef());
+    p.getHp() = (newHp >= 0) newHp : 0;
   }
 }
 
-virtual void Enemy::attackImpl(Goblin &p){
+void Enemy::attack(Goblin &p){
   if(rand()%2 == 0){
-    defaultAttack(p);
+    int newHp = p.getHp() - damage(this->getAtk(), p.getDef()));
+    p.getHp() = (newHp >= 0) newHp : 0;
   }
 }
 
 
-void Enemy::defaultAttacked(Player &p){
-  this->getHp() -= ceiling((100/(100+this->getDef()))*p.getAtk());
+void Enemy::attacked(Shade &p){
+  int newHp = this->getHp() - damage(p.getAtk(), this->getDef());
+  this->getHp() = (newHp >= 0) newHp : 0;
+  if(this->getHp() <= 0) p.getGold() += rand()%2 + 1;
 }
 
-virtual void Enemy::attackedImpl(Shade &p){
-  defaultAttacked(p);
+void Enemy::attacked(Drow &p){
+  int newHp = this->getHp() - damage(p.getAtk(), this->getDef());
+  this->getHp() = (newHp >= 0) newHp : 0;
+  if(this->getHp() <= 0) p.getGold() += rand()%2 + 1;
 }
 
-virtual void Enemy::attackedImpl(Drow &p){
-  defaultAttacked(p);
+void Enemy::attacked(Vampire &p){
+  int newHp = this->getHp() - damage(p.getAtk(), this->getDef());
+  this->getHp() = (newHp >= 0) newHp : 0;
+  p.getHp() += 5;
+  if(this->getHp() <= 0) p.getGold() += rand()%2 + 1;
 }
 
-virtual void Enemy::attackedImpl(Vampire &p){
-  defaultAttacked(p);
-  p.getHp += 5;
+void Enemy::attacked(Troll &p){
+  int newHp = this->getHp() - damage(p.getAtk(), this->getDef());
+  this->getHp() = (newHp >= 0) newHp : 0;
+  p.getHp() = (p.getHp() + 5 > p.getDfHp())? p.getDfHp() : p.getHp() + 5;
+  if(this->getHp() <= 0) p.getGold() += rand()%2 + 1;
 }
 
-virtual void Enemy::attackedImpl(Troll &p){
-  defaultAttacked(p);
-  p.getHp = (p.getHp + 5 > 120)? 120 : p.getHp + 5;
+void Enemy::attacked(Goblin &p){
+  int newHp = this->getHp() - damage(p.getAtk(), this->getDef());
+  this->getHp() = (newHp >= 0) newHp : 0;
+  if(this->getHp() <= 0) p.getGold() += rand()%2 + 1;
+  if(this->getHp() <= 0) p.getGold() += 5;
 }
 
-virtual void Enemy::attackedImpl(Goblin &p){
-  defaultAttacked(p);
-  if(this->isDead()) p.getGold() += 5;
+
+bool Enemy::exist(){
+  return hp > 0;
 }

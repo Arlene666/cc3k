@@ -1,8 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "object.h"
-#include "item.h"
 #include "enemy.h"
+#include "item.h"
 
 class Player{
   //status
@@ -15,20 +15,20 @@ public:
   hp{hp}, initHp{hp}, atk{atk}, initAtk{atk}, def{def}, initDef{def}, gold{0}{}
 
   //Visitor Pattern: acceptor
-  void attack(Enemy &e);
+  virtual void attack(Enemy &e) = 0;
   //Visitor Pattern: acceptor
-  void attacked(Enemy &e);
+  virtual void attacked(Enemy &e) = 0;
   //Visitor Pattern: acceptor
-  void use(Item &i);
+  virtual void use(Item &i) = 0;
 
   void initAtkDef();
   bool isDead();
 
   //accessor
-  int &getHp() const;
-  int &getAtk() const;
-  int &getDef() const;
-  int &getGold() const;
+  int &getHp();
+  int &getAtk();
+  int &getDef();
+  int &getGold();
   int getDfHp() const;
 
   //dtor

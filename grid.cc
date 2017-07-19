@@ -41,19 +41,6 @@ shared_ptr<Object> Grid::setObject(char c){
   return o;
 }
 
-std::string Grid::getType(Enemy &e){ return "Enemy"; }
-std::string Grid::getType(Potion &i){ return "Potion"; }
-std::string Grid::getType(Gold &i){ return "Gold"; }
-
-bool Grid::useItemImpl(Item &i){
-  p->use(i);
-  return i.exist();
-}
-bool Grid::attackEnemyImpl(Enemy &e){
-  p->attack(e);
-  return e.isDead();
-}
-
 Cell *Grid::getCell(std::string command, int x, int y){
   // Command: "no", "so". "ea". "we", "ne", "nw", "se", "sw"
   if (command == "no" && x > 0) return &cells[x-1][y];
@@ -99,11 +86,12 @@ void Grid::movePlayer(std::string command){
       std::swap(this->cells[pX][pY].getObject(), c->getObject());
       pX = c->getX();
       pY = c->getY();
-    }else if(getType(*c->getObject()) == "Gold"){
-      if(!useItemImpl(*c->getObject())) c->getObject() = nullptr;
+    }else if(c->getObject()->whoAmI() == "Gold"){
+      p->use(*dynamic_pointer_cast<Gold>(c->getObject()));
+      if(!c->getObject()->exist()) c->getObject() = nullptr;
       pX = c->getX();
       pY = c->getY();
-    }else if(getType(*c->getObject()) == "Potion"){
+    }else if(c->getObject()->whoAmI() == "Potion"){
       pX = c->getX();
       pY = c->getY();
     }
@@ -111,16 +99,18 @@ void Grid::movePlayer(std::string command){
 }
 
 void Grid::attackEnemy(std::string command){
-  Cell &c = this->getCell(command, pX, pY);
-  if(c != nullptr && c->getObject() != nullptr && getType(*c.getObject()) == "Enemy"){
-    if(attackEnemyImpl(*c->getObject())) c->getObject() = nullptr;
+  Cell *c = this->getCell(command, pX, pY);
+  if(c != nullptr && c->getObject() != nullptr && c->getObject()->whoAmI() == "Enemy"){
+    p->attack(*dynamic_pointer_cast<Enemy>(c->getObject()));
+    if(!c->getObject()->exist()) c->getObject() = nullptr;
   }
 }
 
 void Grid::useItem(std::string command){
   Cell *c = this->getCell(command, pX, pY);
-  if(c != nullptr && c->getObject() != nullptr && getType(*c->getObject()) == "Potion"){
-    if(!useItemImpl(*c->getObject())) c->getObject() = nullptr;
+  if(c != nullptr && c->getObject() != nullptr && c->getObject()->whoAmI() == "Potion"){
+    p->use(*dynamic_pointer_cast<Potion>(c->getObject()));
+    if(!c->getObject()->exist()) c->getObject() = nullptr;
   }
 }
 

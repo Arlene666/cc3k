@@ -3,10 +3,9 @@
 #include "enemy.h"
 
 class Orcs : public Enemy {
-protected:
-  void attackImpl(Goblin &p) override;
 public:
   Orcs(): Enemy{180, 30, 25} {}
+  void attack(Goblin &p) override;
   ~Orcs();
   friend std::ostream &operator<<(std::ostream &out, Orcs &e);
 };

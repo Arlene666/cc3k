@@ -2,11 +2,11 @@
 
 Cell::~Cell(){}
 
-std::ostream &operator<<(std::stream &out, Cell &c){
-  if(o != nullptr){
-    out << o;
+std::ostream &operator<<(std::ostream &out, Cell &c){
+  if(c.o != nullptr){
+    out << c.o;
   }else{
-    out << tile;
+    out << c.tile;
   }
   return out;
 }

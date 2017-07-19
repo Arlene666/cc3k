@@ -1,24 +1,30 @@
 #include "wa.h"
+#include <utility>
 
 WA::WA():isUsable{true}, isUsed{false} {}
 
-void WA::usedDefault(Player &p) {
-    int &atk = p.getAtk();
-    if (atk - 5 < 0) {
-        atk = 0;
-    } else {
-        atk -= 5;
-    }
-    isUsed = true;
+void WA::used(Shade &p) override{
+  int &atk = p.getAtk();
+  atk = max(atk-5, 0);
+  isUsed = true;
 }
-
-
-void WA::usedImpl(Drow &d) {
-    int &atk = d.getAtk();
-    if (atk - 7 < 0) {
-        atk = 0;
-    } else {
-        atk -= 7;
-    }
-    isUsed = true;
+void WA::used(Drow &p) override{
+  int &atk = p.getAtk();
+  atk = max(atk-7, 0);
+  isUsed = true;
+}
+void WA::used(Vampire &p) override{
+  int &atk = p.getAtk();
+  atk = max(atk-5, 0);
+  isUsed = true;
+}
+void WA::used(Troll &p) override{
+  int &atk = p.getAtk();
+  atk = max(atk-5, 0);
+  isUsed = true;
+}
+void WA::used(Goblin &p) override{
+  int &atk = p.getAtk();
+  atk = max(atk-5, 0);
+  isUsed = true;
 }

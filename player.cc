@@ -1,23 +1,18 @@
 #include "player.h"
 
-
-void Player::attack(Enemy &e){ e.attacked(*this); }
-void Player::attacked(Enemy &e){ e.attack(*this); }
-void Player::use(Item &i){ i.used(*this); }
-
-void initAtkDef(){
+void Player::initAtkDef(){
   atk = initAtk;
   def = initDef;
 }
-bool isDead(){ return hp <= 0; }
+bool Player::isDead(){ return hp <= 0; }
 
-int &Player::getHp() const { return hp; }
-int &Player::getAtk() const { return atk; }
-int &Player::getDef() const { return def; }
-int &Player::getGold() const { return gold; }
-int Player::getDfHP() const { return initHp; }
+int &Player::getHp() { return hp; }
+int &Player::getAtk() { return atk; }
+int &Player::getDef() { return def; }
+int &Player::getGold() { return gold; }
+int Player::getDfHp() const { return initHp; }
 
-friend std::ostream &operator<<(std::ostream &out, Player &p){
+std::ostream &operator<<(std::ostream &out, Player &p){
   out << '@';
   return out;
 }

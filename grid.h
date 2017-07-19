@@ -43,12 +43,6 @@ class Grid{
   void setPlayer();
   shared_ptr<Object> setObject(char c);
   Cell *getCell(std::string command, int x, int y);
-  bool useItemImpl(Item &i);
-  bool attackEnemyImpl(Enemy &e);
-  // determines the type of the object
-  std::string getType(Enemy &e);
-  std::string getType(Potion &i);
-  std::string getType(Gold &i);
 
 public:
   //ctor
@@ -60,14 +54,13 @@ public:
 
   // Command: "no", "so". "ea". "we", "ne", "nw", "se", "sw"
   void movePlayer(std::string command);
-  // Command: "a<direction>"
   void attackEnemy(std::string command);
-  // Command: "u<direction>"
   void useItem(std::string command);
   // move all enemies
   void moveEnemy();
   // stop enemy and start enemy
   void stopEnemy();
+  // determine whether player is alive
   bool isPlaying();
 
   friend std::ostream &operator<<(std::ostream &out, Grid &g);

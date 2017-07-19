@@ -1,36 +1,36 @@
 #include "halfling.h"
 
-void Halfling::attackedImpl(Shade &p){
+void Halfling::attacked(Shade &p) override{
   if(rand()%2 == 0){
-    defaultAttacked(p);
+    Enemy::attack(p);
   }
 }
 
-void Halfling::attackedImpl(Drow &p){
+void Halfling::attacked(Drow &p) override{
   if(rand()%2 == 0){
-    defaultAttacked(p);
+    Enemy::attack(p);
   }
 }
 
-void Halfling::attackedImpl(Vampire &p){
+void Halfling::attacked(Vampire &p) override{
   if(rand()%2 == 0){
-    defaultAttacked(p);
-    p.getHp += 5;
+    Enemy::attack(p);
   }
 }
 
-void Halfling::attackedImpl(Troll &p){
+void Halfling::attacked(Troll &p) override{
   if(rand()%2 == 0){
-    defaultAttacked(p);
+    int newHp = this->getHp() - damage(p.getAtk(), this->getDef());
+    this->getHp() = (newHp >= 0) newHp : 0;
   }
-  p.getHp = (p.getHp + 5 > 120)? 120 : p.getHp + 5;
+  p.getHp() = (p.getHp() + 5 > p.getDfHp())? p.getDfHp() : p.getHp() + 5;
+  if(this->getHp() <= 0) p.getGold() += rand()%2 + 1;
 }
 
-void Halfling::attackedImpl(Goblin &p){
+void Halfling::attacked(Goblin &p) override{
   if(rand()%2 == 0){
-    defaultAttacked(p);
+    Enemy::attack(p);;
   }
-  if(this->isDead()) p.getGold() += 5;
 }
 
 Halfling::~Halfling(){}

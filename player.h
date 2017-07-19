@@ -1,17 +1,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "object.h"
+#include "item.h"
+#include "enemy.h"
 
-class Enemy;
-class Human;
-class Dwarf;
-class Elf;
-class Orcs;
-class Merchant;
-class Dragon;
-class Halfling;
-
-class Player : public Object {
+class Player{
   //status
   int hp, initHp, atk, initAtk, def, initDef, gold;
 

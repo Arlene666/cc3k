@@ -2,6 +2,7 @@
 #define ENEMY_H
 #include <cstdlib>
 #include "object.h"
+#include "player.h"
 
 class Player;
 class Shade;
@@ -15,7 +16,7 @@ class Enemy : public Object{
 
 protected:
 
-  void defaultAttack(Player &p);
+  virtual void defaultAttack(Player &p);
   //Visitor Pattern: visitor
   virtual void attackImpl(Shade &p);
   virtual void attackImpl(Drow &p);
@@ -23,7 +24,7 @@ protected:
   virtual void attackImpl(Troll &p);
   virtual void attackImpl(Goblin &p);
 
-  void defaultAttacked(Player &p);
+  virtual void defaultAttacked(Player &p);
   //Visitor Pattern: visitor
   virtual void attackedImpl(Shade &p);
   virtual void attackedImpl(Drow &p);

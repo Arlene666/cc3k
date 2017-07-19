@@ -11,3 +11,5 @@ class Gold : public Item {
     Gold(int n);
     friend std::ostream &operator<<(std::ostream &out, Gold &i);
 };
+
+#endif

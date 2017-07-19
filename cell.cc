@@ -2,8 +2,8 @@
 
 Cell::~Cell(){}
 
-friend std::ostream &operator<<(std::stream &out, Cell &c){
-  if(o){
+std::ostream &operator<<(std::stream &out, Cell &c){
+  if(o != nullptr){
     out << o;
   }else{
     out << tile;

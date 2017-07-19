@@ -3,7 +3,8 @@
 #include <iostream>
 
 class Object{
-  virtual ~Object = 0;
+public:
+  virtual ~Object() = 0;
 };
 
 #endif

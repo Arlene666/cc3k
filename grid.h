@@ -1,49 +1,58 @@
 #ifndef GRID_H
 #define GRID_H
-#include "cell.h"
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <memory>
+#include "cell.h"
+#include "player.h"
+#include "item.h"
+#include "enemy.h"
+#include "potion.h"
+#include "gold.h"
+#include "shade.h"
+#include "drow.h"
+#include "vampire.h"
+#include "troll.h"
+#include "goblin.h"
+#include "human.h"
+#include "merchant.h"
+#include "dragon.h"
+#include "dwarf.h"
+#include "orcs.h"
+#include "halfling.h"
+#include "elf.h"
+#include "rh.h"
+#include "ba.h"
+#include "bd.h"
+#include "ph.h"
+#include "wa.h"
+#include "wd.h"
+
 using namespace std;
 
-class Object;
-class Shade;
-class Drow;
-class Vampire;
-class Troll;
-class Goblin;
-class Human;
-class Merchant;
-class Dragon;
-class Dwarf;
-class Orcs;
-class Halfling;
-class Elf;
-class Gold;
-class RH;
-class BA;
-class BD;
-class PH;
-class WA;
-class WD;
-
 class Grid{
-  std::vector<std::vector<Cell>> cells;
-  ifstream in;
-  char race;
-  int playerPosX, playerPosY, floor;
   const int width = 79, height = 25;
+  std::vector<std::vector<Cell>> cells;
+  shared_ptr<Player> p;
+  shared_ptr<ifstream> in;
+  char race;
+  int pX, pY, floor;
   bool enemyCanMove;
 
-  Cell &getCell(std::string command, int x, int y);
-
+  void setPlayer();
+  shared_ptr<Object> setObject(char c);
+  Cell *getCell(std::string command, int x, int y);
+  bool useItemImpl(Item &i);
+  bool attackEnemyImpl(Enemy &e);
+  // determines the type of the object
   std::string getType(Enemy &e);
   std::string getType(Potion &i);
   std::string getType(Gold &i);
 
 public:
   //ctor
-  Grid(ifstream &in, char race): in{in}, race{race}, floor{0}, enemyCanMove{true} {}
+  Grid(shared_ptr<ifstream> in, char race): in{in}, race{race}, floor{0}, enemyCanMove{true} {}
   //Grid(char race): in{NULL}, race{race}, floor{0}, enemyCanMove{true}{}
 
   void loadStage();

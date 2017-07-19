@@ -1,6 +1,7 @@
 #ifndef _ITEM_H_
 #define _ITEM_H_
 #include "object.h"
+#include "player.h"
 
 class Player;
 class Shade;

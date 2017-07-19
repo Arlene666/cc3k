@@ -29,17 +29,17 @@ int main(int argc, char *argv[]){
     while(1){
       cin >> c;
       if(c == 's' || c == 'd' || c == 'v' || c == 'g' || c == 't') {
-        g = make_shared<Grid>(*in, c);
+        g = make_shared<Grid>(in, c);
         break;
       }
     }
     // take in commands
     while(g->isPlaying() && getline(cin, s)){
       if(s[0] == 'u'){
-        g->useItem(s);
+        g->useItem(s.substr(1));
         cout << g;
       }else if(s[0] == 'a'){
-        g->attackEnemy(s);
+        g->attackEnemy(s.substr(1));
         cout << g;
       }else if(s[0] == 'f'){
 

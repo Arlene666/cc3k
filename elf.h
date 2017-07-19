@@ -9,7 +9,7 @@ protected:
   void attackImpl(Troll &p) override;
   void attackImpl(Goblin &p) override;
 public:
-  Elf(): Player{140, 30, 10} {}
+  Elf(): Enemy{140, 30, 10} {}
   ~Elf();
   friend std::ostream &operator<<(std::ostream &out, Elf &e);
 };

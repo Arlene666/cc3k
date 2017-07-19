@@ -2,8 +2,7 @@
 #define CELL_H
 #include <memory>
 #include <iostream>
-
-class Object;
+#include "object.h"
 
 class Cell{
   int x, y;
@@ -14,7 +13,7 @@ public:
   Cell(int x, int y, char tile, std::shared_ptr<Object> o):
   x{x}, y{y}, tile{tile}, o{o}{}
 
-  std::shared_ptr<Object> getObject() { return o; }
+  std::shared_ptr<Object> &getObject() { return o; }
   int getX() { return x; }
   int getY() { return y; }
   char getTile() { return tile; }

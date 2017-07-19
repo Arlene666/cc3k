@@ -4,7 +4,7 @@
 
 class Dragon : public Enemy {
 public:
-  Dragon(): Player{150, 20, 20} {}
+  Dragon(): Enemy{150, 20, 20} {}
   ~Dragon();
   friend std::ostream &operator<<(std::ostream &out, Dragon &e);
 };

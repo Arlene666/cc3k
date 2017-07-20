@@ -3,13 +3,14 @@
 #include <iostream>
 #include <memory>
 #include "grid.h"
-
 using namespace std;
 
+std::string Object::message;
+
 int main(int argc, char *argv[]){
-  shared_ptr<Grid> g;
-  shared_ptr<ifstream> in;
-  string fname;
+  std::shared_ptr<Grid> g;
+  std::shared_ptr<std::ifstream> in;
+  std::string fname;
 
   if(argc - 1 == 1){
     fname = argv[1];
@@ -23,34 +24,34 @@ int main(int argc, char *argv[]){
     exit(1);
   }
 
-  char c;
   string s;
   bool gameOver = false;
 
   while(!gameOver){
     // set the player race
     while(1){
-      cin >> c;
-      if(c == 's' || c == 'd' || c == 'v' || c == 'g' || c == 't') {
-        g = make_shared<Grid>(in, c);
+      getline(cin, s);
+      if(s.at(0) == 's' || s.at(0) == 'd' || s.at(0) == 'v' || s.at(0) == 'g' || s.at(0) == 't') {
+        g = make_shared<Grid>(in, s.at(0));
+        cout << *g;
         break;
       }
     }
     // take in commands
     while(g->isPlaying() && getline(cin, s)){
-      if(s[0] == 'u'){
+      if(s.at(0) == 'u'){
         g->useItem(s.substr(1));
         cout << *g;
-      }else if(s[0] == 'a'){
+      }else if(s.at(0) == 'a'){
         g->attackEnemy(s.substr(1));
         cout << *g;
-      }else if(s[0] == 'f'){
+      }else if(s.at(0) == 'f'){
         g->stopEnemy();
         cout << *g;
-      }else if(s[0] == 'r'){
+      }else if(s.at(0) == 'r'){
         gameOver = false;
         break;
-      }else if(s[0] == 'q'){
+      }else if(s.at(0) == 'q'){
         gameOver = true;
         break;
       }else{
@@ -60,8 +61,8 @@ int main(int argc, char *argv[]){
     }
     if(!g->isPlaying()){
       cout << "Would you like to play again?[y/n]";
-      cin >> c;
-      if(c == 'n') gameOver = true;
+      getline(cin, s);
+      if(s.at(0) == 'n') gameOver = true;
     }
   }
 

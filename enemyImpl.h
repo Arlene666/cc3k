@@ -1,6 +1,7 @@
 #ifndef ENEMYIMPL_H
 #define ENEMYIMPL_H
 #include <cstdlib>
+#include <string>
 #include "enemy.h"
 #include "shade.h"
 #include "drow.h"

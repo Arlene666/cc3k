@@ -14,7 +14,7 @@ class Enemy : public Object{
   int hp, atk, def, drop; // status
 
 protected:
-  int damage(int atk, int def);
+  int damage(float atk, float def);
 
 public:
 

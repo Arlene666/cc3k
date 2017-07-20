@@ -66,15 +66,39 @@ std::string getDirection(std::string command){
   else return "";
 }
 
+void Grid::checkObject(Object &o){
+  if(o.whoAmI() != "Enemy" && o.whoAmI() != "Gold"){
+    if(o.whoAmI() == "RH" && rh){ Object::message += " and sees an RH"; }
+    else if(o.whoAmI() == "BA" && ba){ Object::message += " and sees an BA"; }
+    else if(o.whoAmI() == "BD" && bd){ Object::message += " and sees an BD"; }
+    else if(o.whoAmI() == "PH" && ph){ Object::message += " and sees an PH"; }
+    else if(o.whoAmI() == "WA" && wa){ Object::message += " and sees an WA"; }
+    else if(o.whoAmI() == "WD" && wd){ Object::message += " and sees an WD"; }
+    else { Object::message += " and sees an unknown potion"; }
+  }
+}
+
+void Grid::updatePotion(std::string name){
+  if(name == "RH") rh = true;
+  else if(name == "BA") ba = true;
+  else if(name == "BD") bd = true;
+  else if(name == "PH") ph = true;
+  else if(name == "WA") ba = true;
+  else if(name == "WD") bd = true;
+}
 
 //****************public methods******************************
 
-Grid::Grid(shared_ptr<ifstream> in, char race): in{in}, race{race}, floor{0}, enemyCanMove{true} {
+Grid::Grid(shared_ptr<ifstream> in, char race): in{in}, race{race}, floor{0},
+enemyCanMove{true}, rh{false}, ba{false}, bd{false}, ph{false}, wa{false}, wd{false}{
   setPlayer();
+  Object::message = "";
   loadStage();
 }
 
 void Grid::loadStage(){
+  if(floor == 0) Object::message = "Player character has spawned.";
+  p->initAtkDef();
   floor++;
   for(int x = 0; x < height; x++){
     vector<Cell> row;
@@ -86,7 +110,7 @@ void Grid::loadStage(){
       }else if(c == '@'){
         pX = x;
         pY = y;
-        row.push_back(Cell(x, y, c));
+        row.push_back(Cell(x, y, '.'));
       }else{
         row.push_back(Cell(x, y, '.', setObject(c)));
       }
@@ -97,18 +121,19 @@ void Grid::loadStage(){
 }
 
 void Grid::movePlayer(std::string command){
-  message = "";
+  Object::message = "";
   Cell *c = getCell(command, pX, pY);
-  if(c != nullptr && c->getTile() != '|' && c->getTile() != ' ' && c->getTile() != '-'){
-    message += "PC moves " + getDirection(command);
+  if(c != nullptr && c->getTile() != '|' && c->getTile() != ' ' &&
+  c->getTile() != '-' && c->getObject()->whoAmI() != "Enemy"){
+    Object::message += "PC moves " + getDirection(command);
     if(c->getTile() == '\\'){
-      message += "and walked up the stair "
+      Object::message += " and walked up the stair";
       if(floor < 5) {
         loadStage();
-        message += "and arrived to the next floor. "
+        Object::message += " and arrived to the next floor";
       }else{
         p->getHp() = 0;
-        message += "and conquered the dangeon. Congratulation! You Won! "
+        Object::message += " and conquered the dangeon. Congratulation! You Won";
       }
     }else if(c->getObject() == nullptr){
       std::swap(cells[pX][pY].getObject(), c->getObject());
@@ -117,31 +142,42 @@ void Grid::movePlayer(std::string command){
     }else if(c->getObject()->whoAmI() == "Gold"){
       p->use(*dynamic_pointer_cast<Gold>(c->getObject()));
       if(!c->getObject()->exist()) c->getObject() = nullptr;
-      message += "and picked up a gold"
+      Object::message += " and picked up a gold";
       pX = c->getX();
       pY = c->getY();
-    }else if(c->getObject()->whoAmI() == "Potion"){
+    }else if(c->getObject()->whoAmI() != "Enemy"){
       pX = c->getX();
       pY = c->getY();
     }
+    for(int x = -1; x <= 1; x++){
+      for(int y = -1; y <= 1; y++){
+        if(x != 0 && y != 0) checkObject(*cells[pX+x][pY+y].getObject());
+      }
+    }
+    moveEnemy();
   }
+  Object::message += ".";
 }
 
 void Grid::attackEnemy(std::string command){
-  message = "";
+  Object::message = "";
   Cell *c = getCell(command, pX, pY);
   if(c != nullptr && c->getObject() != nullptr && c->getObject()->whoAmI() == "Enemy"){
     p->attack(*dynamic_pointer_cast<Enemy>(c->getObject()));
     if(!c->getObject()->exist()) c->getObject() = nullptr;
   }
+  moveEnemy();
 }
 
 void Grid::useItem(std::string command){
-  message = "";
+  Object::message = "";
   Cell *c = getCell(command, pX, pY);
-  if(c != nullptr && c->getObject() != nullptr && c->getObject()->whoAmI() == "Potion"){
+  if(c != nullptr && c->getObject() != nullptr &&
+  c->getObject()->whoAmI() != "Enemy" && c->getObject()->whoAmI() != "Gold"){
     p->use(*dynamic_pointer_cast<Potion>(c->getObject()));
+    updatePotion(c->getObject()->whoAmI());
     if(!c->getObject()->exist()) c->getObject() = nullptr;
+    moveEnemy();
   }
 }
 
@@ -184,10 +220,10 @@ std::ostream &operator<<(std::ostream &out, Grid &g){
     case 't': out << "Troll"; break;
   }
   out << " Gold: " << g.p->getGold();
-  out << "\t\t\t\tFloor " << g.floor << endl;
+  out << "\t\t\t\t\t\tFloor " << g.floor << endl;
   out << "HP: " << g.p->getHp() << endl;
   out << "Atk: " << g.p->getAtk() << endl;
   out << "Def: " << g.p->getDef() << endl;
-  out << "Action: " << message << endl;
+  out << "Action: " << Object::message << endl;
   return out;
 }

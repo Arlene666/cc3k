@@ -34,16 +34,17 @@ using namespace std;
 class Grid{
   const int width = 79, height = 25;
   std::vector<std::vector<Cell>> cells;
-  shared_ptr<Player> p;
-  shared_ptr<ifstream> in;
+  std::shared_ptr<Player> p;
+  std::shared_ptr<ifstream> in;
   char race;
   int pX, pY, floor;
-  bool enemyCanMove;
-  std::string message;
+  bool enemyCanMove, rh, ba, bd, ph, wa, wd;
 
   void setPlayer();
-  shared_ptr<Object> setObject(char c);
+  std::shared_ptr<Object> setObject(char c);
   Cell *getCell(std::string command, int x, int y);
+  void checkObject(Object &o);
+  void updatePotion(std::string name);
 
 public:
   //ctor

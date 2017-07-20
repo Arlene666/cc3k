@@ -5,6 +5,7 @@
 class BD : public Potion {
     public:
     BD();
+    std::string whoAmI(){ return "BD"; }
     void used(Shade &p) override;
     void used(Drow &p) override;
     void used(Vampire &p) override;

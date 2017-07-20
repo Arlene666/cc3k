@@ -4,7 +4,7 @@
 
 //*********protected methods**********************************
 
-int Enemy::damage(int atk, int def){
+int Enemy::damage(float atk, float def){
   return ceil((100/(100+def))*atk);
 }
 

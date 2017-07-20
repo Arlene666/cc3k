@@ -11,7 +11,6 @@
 class Potion : public Item {
 public:
   Potion(): Item{true}{}
-  std::string whoAmI(){ return "Potion"; }
   char getChar() override;
   virtual ~Potion() override{}
 };

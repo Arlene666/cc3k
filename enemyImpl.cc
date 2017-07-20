@@ -2,8 +2,10 @@
 
 void EnemyImpl::defaultAttack(Player &p){
   if(rand()%2 == 0){
-    int newHp = p.getHp() - damage(this->getAtk(), p.getDef());
+    int damage = Enemy::damage(this->getAtk(), p.getDef());
+    int newHp = p.getHp() - damage;
     p.getHp() = (newHp >= 0)? newHp : 0;
+    Object::message += getChar() + " deals " + std::to_string(damage) + " damage to PC. ";
   }
 }
 
@@ -28,9 +30,12 @@ void EnemyImpl::attack(Goblin &p){
 }
 
 void EnemyImpl::defaultAttacked(Player &p){
-  int newHp = this->getHp() - damage(p.getAtk(), this->getDef());
+  int damage = Enemy::damage(p.getAtk(), this->getDef());
+  int newHp = this->getHp() - damage;
   this->getHp() = (newHp >= 0)? newHp : 0;
   if(this->getHp() <= 0) p.getGold() += this->getDrop();
+  Object::message += "PC deals " + std::to_string(damage) + " damage to " +
+  getChar() + " (" + std::to_string(getHp()) + " HP). ";
 }
 
 void EnemyImpl::attacked(Shade &p){

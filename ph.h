@@ -6,6 +6,7 @@
 class PH : public Potion {
     public:
     PH();
+    std::string whoAmI(){ return "PH"; }
     void used(Shade &p) override;
     void used(Drow &p) override;
     void used(Vampire &p) override;

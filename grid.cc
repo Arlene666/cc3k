@@ -126,7 +126,7 @@ bool Grid::setDragon(Cell *temp){
           c->getObject() = make_shared<Dragon>();
           Dragon &d = *dynamic_pointer_cast<Dragon>(c->getObject());
           shared_ptr<Gold> g = dynamic_pointer_cast<Gold>(temp->getObject());
-          d.setGold(g, x+i, y+j);
+          d.setGold(g, x, y);
           return true;
         }
       }
@@ -338,7 +338,7 @@ void Grid::attackEnemy(std::string command){
         p->use(*g);
         if(!g->exist()){
           Object::message += " PC picked up a gold.";
-          c->getObject() = nullptr;
+          cells[pX][pY].getObject() = nullptr;
         }
       }
     }

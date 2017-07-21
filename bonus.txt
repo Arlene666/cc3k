@@ -1,0 +1,14 @@
+Bonus Feeatures:
+1. Did not explictly managed memory. All heap allocated objects are controlled
+    using smart pointers.
+2. Implemented intelligence to the enemies.
+    Enable: Type 'l' to during the game. Player will be asked to enter integer
+            from 1 to 4. The default value is 1. Pl
+    Info:   The integer represents the the blocks of radius where enemies notice
+            the PC. When enemies noticed the PC, they moves towards PC and
+            attacks the PC when the PC is in 1 block radius of the enemy.
+            Enemies move randomly as usual when PC is out of the range.
+            Enemies will avoid objects (gold and potion) while chasing the PC,
+            however if enemy cannot chase the PC (when PC is in the corridor or
+            more than three objects lined as a wall between PC and enemy) then
+            enemy does not move and prepared for wait.

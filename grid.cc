@@ -340,6 +340,8 @@ void Grid::attackEnemy(std::string command){
         }
       }
     }
+  }else{
+    Object::message = "PC missed.";
   }
   moveEnemy();
 }

@@ -2,7 +2,7 @@ Bonus Feeatures:
 1. Did not explictly managed memory. All heap allocated objects are controlled
     using smart pointers.
 2. Implemented intelligence to the enemies.
-    Enable: Type 'l' to during the game. Player will be asked to enter integer
+    Enable: Type 'l' during the game. Player will be asked to enter integer
             from 1 to 4. The default value is 1. Pl
     Info:   The integer represents the the blocks of radius where enemies notice
             the PC. When enemies noticed the PC, they moves towards PC and

@@ -8,15 +8,15 @@ using namespace std;
 
 void Grid::setPlayer(){
   if(race == 's'){
-    p = std::make_shared<Shade>();
+    p = std::make_unique<Shade>();
   }else if(race == 'd'){
-    p = std::make_shared<Drow>();
+    p = std::make_unique<Drow>();
   }else if(race == 'v'){
-    p = std::make_shared<Vampire>();
+    p = std::make_unique<Vampire>();
   }else if(race == 'g'){
-    p = std::make_shared<Goblin>();
+    p = std::make_unique<Goblin>();
   }else if(race == 't'){
-    p = std::make_shared<Troll>();
+    p = std::make_unique<Troll>();
   }
 }
 

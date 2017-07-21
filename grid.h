@@ -34,7 +34,7 @@ using namespace std;
 class Grid{
   const int width = 79, height = 25;
   std::vector<std::vector<Cell>> cells;
-  std::shared_ptr<Player> p;
+  std::unique_ptr<Player> p;
   std::shared_ptr<ifstream> in;
   char race;
   int pX, pY, floor, lv;

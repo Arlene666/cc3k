@@ -99,7 +99,8 @@ bool Grid::playerWalkable(Cell *c){
 }
 
 bool Grid::enemyWalkable(Cell *c){
-  return (playerWalkable(c) && c->getTile() != '+' && c->getTile() != '#' && c->getObject() == nullptr);
+  return (playerWalkable(c) && c->getTile() != '+' && c->getTile() != '#'
+  && c->getTile() != '\\' && c->getObject() == nullptr);
 }
 
 void Grid::setDragonHoard(Dragon &d, int x, int y){
@@ -294,6 +295,7 @@ void Grid::movePlayer(std::string command){
         p->getHp() = 0;
         Object::message += " and conquered the dangeon. Congratulation! Your score is " + std::to_string(getScore()) + ".";
       }
+      return;
     }else if(c->getObject() == nullptr || c->getObject()->whoAmI() != "Gold"){
       // PC walk on nothing or potion
       pX = c->getX();

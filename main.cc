@@ -42,26 +42,38 @@ int main(int argc, char *argv[]){
     }
     // take in commands
     while(g->isPlaying() && getline(cin, s)){
-      if(s.at(0) == 'u'){
-        g->useItem(s.substr(1));
-        cout << *g;
-      }else if(s.at(0) == 'a'){
-        g->attackEnemy(s.substr(1));
-        cout << *g;
-      }else if(s.at(0) == 'f'){
-        g->stopEnemy();
-        if(g->enemyMovable()) Object::message = "Enemy start moving.";
-        else Object::message = "Enemy stopped moving.";
-        cout << *g;
-      }else if(s.at(0) == 'r'){
-        gameOver = false;
-        break;
-      }else if(s.at(0) == 'q'){
-        gameOver = true;
-        break;
-      }else{
-        g->movePlayer(s);
-        cout << *g;
+      if(s.length() != 0){
+        if(s.at(0) == 'u'){
+          g->useItem(s.substr(1));
+          cout << *g;
+        }else if(s.at(0) == 'a'){
+          g->attackEnemy(s.substr(1));
+          cout << *g;
+        }else if(s.at(0) == 'f'){
+          g->stopEnemy();
+          if(g->enemyMovable()) Object::message = "Enemy start moving.";
+          else Object::message = "Enemy stopped moving.";
+          cout << *g;
+        }else if(s.at(0) == 'l'){
+          cout << "Choose enemy level[1-4] ";
+          getline(cin, s);
+          if(s.length() != 0){
+            int i = s.at(0) - '0';
+            if(1 <= i && i <= 4){
+              g->getEnemyLevel() = i;
+            }
+          }
+          cout << "Enemy level: " << g->getEnemyLevel() << endl;
+        }else if(s.at(0) == 'r'){
+          gameOver = false;
+          break;
+        }else if(s.at(0) == 'q'){
+          gameOver = true;
+          break;
+        }else{
+          g->movePlayer(s);
+          cout << *g;
+        }
       }
     }
     if(!g->isPlaying()){

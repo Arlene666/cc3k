@@ -17,6 +17,7 @@ public:
   char getChar() override;
   int getHX(){ return hX; }
   int getHY(){ return hY; }
+  bool hasHoard(){ return g != nullptr; }
   ~Dragon();
 };
 

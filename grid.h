@@ -37,7 +37,7 @@ class Grid{
   std::shared_ptr<Player> p;
   std::shared_ptr<ifstream> in;
   char race;
-  int pX, pY, floor;
+  int pX, pY, floor, lv;
   bool enemyCanMove, merchantHostile, rh, ba, bd, ph, wa, wd;
 
   void setPlayer();
@@ -48,7 +48,7 @@ class Grid{
   bool playerWalkable(Cell *c);
   bool enemyWalkable(Cell *c);
   void setDragonHoard(Dragon &d, int x, int y);
-  void setDragon(Cell *temp);
+  bool setDragon(Cell *temp);
 
 public:
   //ctor
@@ -62,10 +62,14 @@ public:
   void useItem(std::string command);
   // move all enemies
   void moveEnemy();
+
   // stop enemy and start enemy
   void stopEnemy();
+  // change enemy level
+  int &getEnemyLevel();
   // determine whether player is alive
   bool isPlaying();
+  // determine whether enemy can move
   bool enemyMovable();
   // get score
   int getScore();

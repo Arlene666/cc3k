@@ -7,4 +7,4 @@ void Dwarf::attacked(Vampire &p){
   p.getHp() -= 5;
 }
 
-char Dwarf::getChar(){ return 'D'; }
+char Dwarf::getChar(){ return 'W'; }

@@ -25,6 +25,7 @@ class Item : public Object{
     virtual void used(Goblin &p) = 0;
 
     bool exist();
+    bool &usable() { return isUsable; }
     virtual ~Item() override {}
 };
 

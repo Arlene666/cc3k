@@ -16,7 +16,7 @@ public:
   std::shared_ptr<Object> &getObject() { return o; }
   int getX() { return x; }
   int getY() { return y; }
-  char getTile() { return tile; }
+  char &getTile() { return tile; }
 
   ~Cell();
 

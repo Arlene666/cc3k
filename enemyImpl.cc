@@ -5,7 +5,11 @@ void EnemyImpl::defaultAttack(Player &p){
     int damage = Enemy::damage(this->getAtk(), p.getDef());
     int newHp = p.getHp() - damage;
     p.getHp() = (newHp >= 0)? newHp : 0;
-    Object::message += getChar() + " deals " + std::to_string(damage) + " damage to PC. ";
+    string ws = " ";
+    Object::message += ws + getChar() + " deals " + std::to_string(damage) + " damage to PC.";
+  }else{
+    string ws = " ";
+    Object::message += ws + getChar() + " missed.";
   }
 }
 
@@ -35,7 +39,12 @@ void EnemyImpl::defaultAttacked(Player &p){
   this->getHp() = (newHp >= 0)? newHp : 0;
   if(this->getHp() <= 0) p.getGold() += this->getDrop();
   Object::message += "PC deals " + std::to_string(damage) + " damage to " +
-  getChar() + " (" + std::to_string(getHp()) + " HP). ";
+  getChar() + " (" + std::to_string(getHp()) + " HP).";
+  if(this->getHp() <= 0){
+    string ws = " ";
+    Object::message += ws + getChar() + " dropped " +
+    std::to_string(this->getDrop()) + " gold.";
+  }
 }
 
 void EnemyImpl::attacked(Shade &p){

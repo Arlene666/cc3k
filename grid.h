@@ -38,13 +38,17 @@ class Grid{
   std::shared_ptr<ifstream> in;
   char race;
   int pX, pY, floor;
-  bool enemyCanMove, rh, ba, bd, ph, wa, wd;
+  bool enemyCanMove, merchantHostile, rh, ba, bd, ph, wa, wd;
 
   void setPlayer();
   std::shared_ptr<Object> setObject(char c);
   Cell *getCell(std::string command, int x, int y);
-  void checkObject(Object &o);
+  void checkObject(std::shared_ptr<Object> o);
   void updatePotion(std::string name);
+  bool playerWalkable(Cell *c);
+  bool enemyWalkable(Cell *c);
+  void setDragonHoard(Dragon &d, int x, int y);
+  void setDragon(Cell *temp);
 
 public:
   //ctor

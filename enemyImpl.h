@@ -11,8 +11,8 @@
 
 class EnemyImpl : public Enemy{
 protected:
-  void defaultAttack(Player &p);
-  void defaultAttacked(Player &p);
+  virtual void defaultAttack(Player &p);
+  virtual void defaultAttacked(Player &p);
 
 public:
   EnemyImpl(int hp, int atk, int def, int drop): Enemy(hp, atk, def, drop){}

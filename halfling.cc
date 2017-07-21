@@ -30,7 +30,6 @@ void Halfling::attacked(Troll &p){
   }else{
     Object::message += "PC missed.";
   }
-  p.getHp() = (p.getHp() + 5 > p.getDfHp())? p.getDfHp() : p.getHp() + 5;
 }
 
 void Halfling::attacked(Goblin &p){

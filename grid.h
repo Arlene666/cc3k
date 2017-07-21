@@ -66,6 +66,9 @@ public:
   void stopEnemy();
   // determine whether player is alive
   bool isPlaying();
+  bool enemyMovable();
+  // get score
+  int getScore();
 
   friend std::ostream &operator<<(std::ostream &out, Grid &g);
 

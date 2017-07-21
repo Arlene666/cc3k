@@ -50,6 +50,8 @@ int main(int argc, char *argv[]){
         cout << *g;
       }else if(s.at(0) == 'f'){
         g->stopEnemy();
+        if(g->enemyMovable()) Object::message = "Enemy start moving.";
+        else Object::message = "Enemy stopped moving.";
         cout << *g;
       }else if(s.at(0) == 'r'){
         gameOver = false;
@@ -65,7 +67,7 @@ int main(int argc, char *argv[]){
     if(!g->isPlaying()){
       cout << "Would you like to play again?[y/n] ";
       getline(cin, s);
-      if(s.at(0) == 'n') gameOver = true;
+      if(s.at(0) != 'y') gameOver = true;
     }
   }
 

@@ -289,7 +289,7 @@ void Grid::movePlayer(std::string command){
         Object::message += " and arrived to the next floor";
       }else{
         p->getHp() = 0;
-        Object::message += " and conquered the dangeon. Congratulation! You Won";
+        Object::message += " and conquered the dangeon. Congratulation! Your score is " + std::to_string(getScore()) + ".";
       }
     }else if(c->getObject() == nullptr || c->getObject()->whoAmI() != "Gold"){
       // PC walk on nothing or potion
@@ -320,25 +320,27 @@ void Grid::movePlayer(std::string command){
 void Grid::attackEnemy(std::string command){
   Object::message = "";
   Cell *c = getCell(command, pX, pY);
-  if(playerWalkable(c) && c->getObject() != nullptr && c->getObject()->whoAmI() == "Enemy"){
-    p->attack(*dynamic_pointer_cast<Enemy>(c->getObject()));
-    // if enemy is a merchant, turn all merchant hostile
-    if(c->getObject()->getChar() == 'M') merchantHostile = true;
-    // check whether enemy died
-    if(!c->getObject()->exist()){
-      c->getObject() = nullptr;
-      // if PC is on dragon hoard when killed the dragon, pick up it
-      if(cells[pX][pY].getObject() != nullptr && cells[pX][pY].getObject()->getChar() == 'G'){
-        std::shared_ptr<Gold> g = dynamic_pointer_cast<Gold>(cells[pX][pY].getObject());
-        p->use(*g);
-        if(!g->exist()){
-          Object::message += " PC picked up a gold.";
-          c->getObject() = nullptr;
+  if(c != nullptr){
+    if(playerWalkable(c) && c->getObject() != nullptr && c->getObject()->whoAmI() == "Enemy"){
+      p->attack(*dynamic_pointer_cast<Enemy>(c->getObject()));
+      // if enemy is a merchant, turn all merchant hostile
+      if(c->getObject()->getChar() == 'M') merchantHostile = true;
+      // check whether enemy died
+      if(!c->getObject()->exist()){
+        c->getObject() = nullptr;
+        // if PC is on dragon hoard when killed the dragon, pick up it
+        if(cells[pX][pY].getObject() != nullptr && cells[pX][pY].getObject()->getChar() == 'G'){
+          std::shared_ptr<Gold> g = dynamic_pointer_cast<Gold>(cells[pX][pY].getObject());
+          p->use(*g);
+          if(!g->exist()){
+            Object::message += " PC picked up a gold.";
+            c->getObject() = nullptr;
+          }
         }
       }
     }
+    moveEnemy();
   }
-  moveEnemy();
 }
 
 void Grid::useItem(std::string command){
@@ -356,12 +358,14 @@ void Grid::useItem(std::string command){
 }
 
 void Grid::moveEnemy(){
+  // regains hp if the PC is troll
+  if(race == 't') p->getHp() = (p->getHp() + 5 > p->getDfHp())? p->getDfHp() : p->getHp() + 5;
   // Dragon does not move. Only attack enemy when PC is within 1 grid of
   //   Dragon it self or the Dragon hoard
   // Merchant moves randomly and does not attack the PC when not hostile
   // Other enemies and hostile merchant walks towards PC and attack PC when they sees PC(4 cells)
-  Object::global_count++;
   if(enemyCanMove){
+    Object::global_count++;
     for(int x = 0; x < height; x++){
       for(int y = 0; y < width; y++){
         shared_ptr<Object> &o = cells[x][y].getObject();
@@ -427,7 +431,7 @@ void Grid::moveEnemy(){
       }
     }
   }
-  if(p->getHp() <= 0) Object::message += " PC died. You Lost.";
+  if(p->getHp() <= 0) Object::message += " PC died. Your score is " + std::to_string(getScore()) + ".";
 }
 
 void Grid::stopEnemy(){
@@ -436,6 +440,15 @@ void Grid::stopEnemy(){
 
 bool Grid::isPlaying(){
   return !p->isDead();
+}
+
+int Grid::getScore(){
+  if(race == 's') return p->getGold() * 3 / 2;
+  return p->getGold();
+}
+
+bool Grid::enemyMovable(){
+  return enemyCanMove;
 }
 
 Grid::~Grid(){

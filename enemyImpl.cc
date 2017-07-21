@@ -62,7 +62,6 @@ void EnemyImpl::attacked(Vampire &p){
 
 void EnemyImpl::attacked(Troll &p){
   defaultAttacked(p);
-  p.getHp() = (p.getHp() + 5 > p.getDfHp())? p.getDfHp() : p.getHp() + 5;
 }
 
 void EnemyImpl::attacked(Goblin &p){

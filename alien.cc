@@ -1,11 +1,12 @@
-#include "orcs.h"
+#include "alien.h"
 
-Orcs::~Orcs(){}
+Alien::~Alien(){}
 
-void Orcs::attack(Goblin &p) {
+void Alien::defaultAttack(Player &p){
   if(rand()%2 == 0){
-    int damage = EnemyImpl::damage(this->getAtk(), p.getDef()) * 3 / 2;
+    int damage = EnemyImpl::damage(this->getAtk(), p.getDef());
     p.getHp() = max(p.getHp()-damage, 0);
+    p.getDef() = max(p.getDef()-1, 0);
     string ws = " ";
     Object::message += ws + getChar() + " deals " + std::to_string(damage) + " damage to PC.";
   }else{
@@ -14,4 +15,4 @@ void Orcs::attack(Goblin &p) {
   }
 }
 
-char Orcs::getChar(){ return 'O'; }
+char Alien::getChar(){ return 'A'; }

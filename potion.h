@@ -1,16 +1,11 @@
 #ifndef _POTION_H_
 #define _POTION_H_
 #include <algorithm>
-#include "item.h"
-#include "shade.h"
-#include "drow.h"
-#include "vampire.h"
-#include "troll.h"
-#include "goblin.h"
+#include "itemImpl.h"
 
 class Potion : public ItemImpl {
 public:
-  Potion(): Item{true}{}
+  Potion(): ItemImpl{true}{}
   char getChar() override;
   virtual ~Potion() override{}
 };

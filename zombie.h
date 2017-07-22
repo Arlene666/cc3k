@@ -4,10 +4,11 @@
 
 class Zombie : public Player{
 public:
-  Zombie(): Player{60, 10, 10} {}
+  Zombie(): Player{100, 10, 10} {}
   void attack(Enemy &e);
   void attacked(Enemy &e);
   void use(Item &i);
+  void initAtkDef() override;
   ~Zombie();
 };
 

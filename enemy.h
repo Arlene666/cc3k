@@ -10,6 +10,8 @@ class Drow;
 class Vampire;
 class Troll;
 class Goblin;
+class Phantom;
+class Zombie;
 
 class Enemy : public Object{
   int hp, atk, def, drop; // status
@@ -30,7 +32,7 @@ public:
   virtual void attacked(Vampire &p) = 0;
   virtual void attacked(Troll &p) = 0;
   virtual void attacked(Goblin &p) = 0;
-  virtual void attacked(Ghost &p) = 0;
+  virtual void attacked(Phantom &p) = 0;
   virtual void attacked(Zombie &p) = 0;
 
   //Accessor

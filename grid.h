@@ -15,6 +15,8 @@
 #include "vampire.h"
 #include "troll.h"
 #include "goblin.h"
+#include "phantom.h"
+#include "zombie.h"
 #include "human.h"
 #include "merchant.h"
 #include "dragon.h"
@@ -22,6 +24,7 @@
 #include "orcs.h"
 #include "halfling.h"
 #include "elf.h"
+#include "alien.h"
 #include "rh.h"
 #include "ba.h"
 #include "bd.h"
@@ -37,7 +40,7 @@ class Grid{
   std::unique_ptr<Player> p;
   std::shared_ptr<ifstream> in;
   char race;
-  int pX, pY, floor, lv;
+  int pX, pY, floor, lv, enemyGenerationSeed;
   bool enemyCanMove, merchantHostile, rh, ba, bd, ph, wa, wd;
 
   void setPlayer();
@@ -52,7 +55,7 @@ class Grid{
 
 public:
   //ctor
-  Grid(shared_ptr<ifstream> in, char race);
+  Grid(shared_ptr<ifstream> in, char race, bool extra = false);
 
   void loadStage();
 

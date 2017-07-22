@@ -8,6 +8,7 @@ class Drow;
 class Vampire;
 class Troll;
 class Goblin;
+class Zombie;
 
 class Item : public Object{
   protected:

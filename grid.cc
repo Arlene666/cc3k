@@ -17,6 +17,10 @@ void Grid::setPlayer(){
     p = std::make_unique<Goblin>();
   }else if(race == 't'){
     p = std::make_unique<Troll>();
+  }else if(race == 'p'){
+    p = std::make_unique<Phantom>();
+  }else if(race == 'z'){
+    p = std::make_unique<Zombie>();
   }
 }
 
@@ -40,6 +44,7 @@ shared_ptr<Object> Grid::setObject(char c){
     case 'M': o = std::make_shared<Merchant>(); break;
     case 'D': o = std::make_shared<Dragon>(); break;
     case 'L': o = std::make_shared<Halfling>(); break;
+    case 'A': o = std::make_shared<Alien>(); break;
     default: o = nullptr;
   }
   if(o != nullptr) o->getCount() = 0;
@@ -137,11 +142,13 @@ bool Grid::setDragon(Cell *temp){
 
 //****************public methods******************************
 
-Grid::Grid(shared_ptr<ifstream> in, char race): in{in}, race{race}, floor{0},
+Grid::Grid(shared_ptr<ifstream> in, char race, bool extra): in{in}, race{race}, floor{0},
 lv{1}, enemyCanMove{true}, merchantHostile{false}, rh{false}, ba{false}, bd{false},
 ph{false}, wa{false}, wd{false}{
   setPlayer();
   Object::message = "";
+  if(extra) enemyGenerationSeed = 20;
+  else enemyGenerationSeed = 18;
   loadStage();
 }
 
@@ -235,19 +242,21 @@ void Grid::loadStage(){
         temp = chamber[room][rand()%chamber[room].size()];
       }while(temp->getObject()!=nullptr || temp->getTile()!='.' ||
       (temp->getX() == pX && temp->getY() == pY));
-      switch(rand()%18){
-        case 0: case 1: case 3: case 4:
+      switch(rand()%enemyGenerationSeed){
+        case 0: case 1: case 2: case 3:
         temp->getObject() = make_shared<Human>(); break;
-        case 5: case 6: case 7:
+        case 4: case 5: case 6:
         temp->getObject() = make_shared<Dwarf>(); break;
-        case 8: case 9: case 10: case 11: case 12:
+        case 7: case 8: case 9: case 10: case 11:
         temp->getObject() = make_shared<Halfling>(); break;
-        case 13: case 14:
+        case 12: case 13:
         temp->getObject() = make_shared<Elf>(); break;
-        case 15: case 16:
+        case 14: case 15:
         temp->getObject() = make_shared<Orcs>(); break;
-        case 17: case 18:
+        case 16: case 17:
         temp->getObject() = make_shared<Merchant>(); break;
+        case 18: case 19:
+        temp->getObject() = make_shared<Alien>(); break;
       }
     }
   }else{
@@ -483,6 +492,8 @@ std::ostream &operator<<(std::ostream &out, Grid &g){
     case 'v': out << "Vampire"; break;
     case 'g': out << "Goblin"; break;
     case 't': out << "Troll"; break;
+    case 'p': out << "Phantom"; break;
+    case 'z': out << "Zombie"; break;
   }
   out << " Gold: " << g.p->getGold();
   out << "\t\t\t\t\t\tFloor " << g.floor << endl;

@@ -21,7 +21,7 @@ public:
   //Visitor Pattern: acceptor
   virtual void use(Item &i) = 0;
 
-  void initAtkDef();
+  virtual void initAtkDef();
   bool isDead();
 
   //accessor

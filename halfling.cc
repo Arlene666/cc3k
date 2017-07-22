@@ -1,16 +1,8 @@
 #include "halfling.h"
 
-void Halfling::attacked(Shade &p){
+void Halfling::defaultAttacked(Player &p){
   if(rand()%2 == 0){
-    EnemyImpl::attacked(p);
-  }else{
-    Object::message += "PC missed.";
-  }
-}
-
-void Halfling::attacked(Drow &p){
-  if(rand()%2 == 0){
-    EnemyImpl::attacked(p);
+    defaultAttackedImpl(p);
   }else{
     Object::message += "PC missed.";
   }
@@ -18,23 +10,8 @@ void Halfling::attacked(Drow &p){
 
 void Halfling::attacked(Vampire &p){
   if(rand()%2 == 0){
-    EnemyImpl::attacked(p);
-  }else{
-    Object::message += "PC missed.";
-  }
-}
-
-void Halfling::attacked(Troll &p){
-  if(rand()%2 == 0){
-    defaultAttacked(p);
-  }else{
-    Object::message += "PC missed.";
-  }
-}
-
-void Halfling::attacked(Goblin &p){
-  if(rand()%2 == 0){
-    EnemyImpl::attacked(p);;
+    defaultAttackedImpl(p);
+    p.getHp() += 5;
   }else{
     Object::message += "PC missed.";
   }

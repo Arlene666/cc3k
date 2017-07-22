@@ -8,10 +8,14 @@
 #include "vampire.h"
 #include "troll.h"
 #include "goblin.h"
+#include "phantom.h"
+#include "zombie.h"
 
 class EnemyImpl : public Enemy{
 protected:
   int damage(float atk, float def);
+  void defaultAttackImpl(Player &p);
+  void defaultAttackedImpl(Player &p);
   virtual void defaultAttack(Player &p);
   virtual void defaultAttacked(Player &p);
 
@@ -28,7 +32,7 @@ public:
   virtual void attacked(Vampire &p);
   virtual void attacked(Troll &p);
   virtual void attacked(Goblin &p);
-  virtual void attacked(Ghost &p);
+  virtual void attacked(Phantom &p);
   virtual void attacked(Zombie &p);
   virtual ~EnemyImpl() override{}
 };

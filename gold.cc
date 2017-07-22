@@ -1,12 +1,12 @@
 #include "gold.h"
 
-void Gold::usedDefault(Player &p){
+void Gold::defaultUsed(Player &p){
   if(isUsable){
     p.getGold() += pile;
     isUsed = true;
   }
 }
 
-Gold::Gold(int n, bool isUsable): Item{isUsable}, pile{n} {}
+Gold::Gold(int n, bool isUsable): ItemImpl{isUsable}, pile{n} {}
 
 char Gold::getChar(){ return 'G'; }

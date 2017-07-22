@@ -2,24 +2,13 @@
 
 Elf::~Elf(){}
 
-void Elf::attack(Shade &p){
-  EnemyImpl::attack(p);
-  EnemyImpl::attack(p);
+void Elf::defaultAttack(Player &p){
+  defaultAttackImpl(p);
+  defaultAttackImpl(p);
 }
 
-void Elf::attack(Vampire &p){
-  EnemyImpl::attack(p);
-  EnemyImpl::attack(p);
-}
-
-void Elf::attack(Troll &p){
-  EnemyImpl::attack(p);
-  EnemyImpl::attack(p);
-}
-
-void Elf::attack(Goblin &p){
-  EnemyImpl::attack(p);
-  EnemyImpl::attack(p);
+void Elf::attack(Drow &p){
+  defaultAttackImpl(p);
 }
 
 char Elf::getChar(){ return 'E'; }

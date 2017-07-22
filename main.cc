@@ -30,10 +30,19 @@ int main(int argc, char *argv[]){
     if(in != nullptr) in->seekg(0, ios::beg);
     // set the player race
     while(1){
-      cout << "Choose the character[s/d/v/g/t] ";
+      cout << "Choose the character[s/d/v/g/t/p/z] ";
       getline(cin, s);
-      if(s.at(0) == 's' || s.at(0) == 'd' || s.at(0) == 'v' || s.at(0) == 'g' || s.at(0) == 't') {
-        g = make_shared<Grid>(in, s.at(0));
+      if(s.length() != 0 && (s.at(0) == 's' || s.at(0) == 'd' || s.at(0) == 'v' || s.at(0) == 'g' ||
+      s.at(0) == 't' || s.at(0) == 'p' || s.at(0) == 'z')) {
+        char c = s.at(0);
+        if(in == nullptr){
+          cout << "Extra Enemy?[y/n] ";
+          getline(cin, s);
+          if(s.length() != 0 && s.at(0) == 'y') g = make_shared<Grid>(in, c, true);
+          else g = make_shared<Grid>(in, c);
+        } else {
+          g = make_shared<Grid>(in, c);
+        }
         cout << *g;
         break;
       }else{
@@ -79,7 +88,7 @@ int main(int argc, char *argv[]){
     if(!g->isPlaying()){
       cout << "Would you like to play again?[y/n] ";
       getline(cin, s);
-      if(s.at(0) != 'y') gameOver = true;
+      if(s.length() == 0 || s.at(0) != 'y') gameOver = true;
     }
   }
 

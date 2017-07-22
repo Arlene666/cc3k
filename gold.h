@@ -1,11 +1,6 @@
 #ifndef _GOLD_H_
 #define _GOLD_H_
-#include "item.h"
-#include "shade.h"
-#include "drow.h"
-#include "vampire.h"
-#include "troll.h"
-#include "goblin.h"
+#include "itemImpl.h"
 
 class Gold : public ItemImpl {
     int pile;

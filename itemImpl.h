@@ -6,19 +6,20 @@
 #include "vampire.h"
 #include "troll.h"
 #include "goblin.h"
+#include "zombie.h"
 
 class ItemImpl : public Item{
   protected:
     virtual void defaultUsed(Player &p) = 0;
 
   public:
-    Item(bool isUsable): isUsable{isUsable}, isUsed{false}{}
-    virtual void used(Shade &p) override;
-    virtual void used(Drow &p) override;
-    virtual void used(Vampire &p) override;
-    virtual void used(Troll &p) override;
-    virtual void used(Goblin &p) override;
-    virtual void used(Zombie &p) override;
+    ItemImpl(bool isUsable): Item{isUsable}{}
+    virtual void used(Shade &p);
+    virtual void used(Drow &p);
+    virtual void used(Vampire &p);
+    virtual void used(Troll &p);
+    virtual void used(Goblin &p);
+    virtual void used(Zombie &p);
     virtual ~ItemImpl() override {}
 };
 

@@ -20,6 +20,11 @@ void ItemImpl::used(Goblin &p){
   defaultUsed(p);
 }
 
+void ItemImpl::used(Phantom &p){
+}
+
 void ItemImpl::used(Zombie &p){
   defaultUsed(p);
 }
+
+ItemImpl::~ItemImpl(){}

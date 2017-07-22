@@ -6,6 +6,7 @@
 #include "vampire.h"
 #include "troll.h"
 #include "goblin.h"
+#include "phantom.h"
 #include "zombie.h"
 
 class ItemImpl : public Item{
@@ -19,8 +20,9 @@ class ItemImpl : public Item{
     virtual void used(Vampire &p);
     virtual void used(Troll &p);
     virtual void used(Goblin &p);
+    virtual void used(Phantom &p);
     virtual void used(Zombie &p);
-    virtual ~ItemImpl() override {}
+    virtual ~ItemImpl() = 0;
 };
 
 #endif

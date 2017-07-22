@@ -364,7 +364,6 @@ void Grid::useItem(std::string command){
   if(playerWalkable(c) && c->getObject() != nullptr &&
   c->getObject()->whoAmI() != "Enemy" && c->getObject()->whoAmI() != "Gold"){
     p->use(*dynamic_pointer_cast<Potion>(c->getObject()));
-    Object::message += ".";
     updatePotion(c->getObject()->whoAmI());
     if(!c->getObject()->exist()) c->getObject() = nullptr;
   }

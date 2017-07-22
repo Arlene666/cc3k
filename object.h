@@ -13,7 +13,7 @@ public:
   virtual std::string whoAmI() = 0;
   virtual bool exist() = 0;
   virtual char getChar() = 0;
-  virtual ~Object(){};
+  virtual ~Object() = 0;
 };
 
 #endif

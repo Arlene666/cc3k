@@ -26,6 +26,7 @@ public:
   virtual void attack(Vampire &p) = 0;
   virtual void attack(Troll &p) = 0;
   virtual void attack(Goblin &p) = 0;
+  virtual void attack(Phantom &p) = 0;
   virtual void attack(Zombie &p) = 0;
   virtual void attacked(Shade &p) = 0;
   virtual void attacked(Drow &p) = 0;
@@ -46,7 +47,7 @@ public:
   bool exist();
 
   //dtor
-  virtual ~Enemy() override{}
+  virtual ~Enemy() = 0;
 
 };
 

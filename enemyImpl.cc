@@ -57,6 +57,12 @@ void EnemyImpl::attack(Goblin &p){
   defaultAttack(p);
 }
 
+void EnemyImpl::attack(Phantom &p){
+  string ws = " ";
+  Object::message += ws + getChar() + " missed.";
+}
+
+
 void EnemyImpl::attack(Zombie &p){
   defaultAttack(p);
 }
@@ -91,3 +97,5 @@ void EnemyImpl::attacked(Phantom &p){
 void EnemyImpl::attacked(Zombie &p){
   defaultAttacked(p);
 }
+
+EnemyImpl::~EnemyImpl(){}

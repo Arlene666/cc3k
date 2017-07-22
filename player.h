@@ -34,7 +34,7 @@ public:
   int getDfDef() const;
 
   //dtor
-  virtual ~Player(){}
+  virtual ~Player() = 0;
 };
 
 #endif

@@ -7,7 +7,7 @@ class Potion : public ItemImpl {
 public:
   Potion(): ItemImpl{true}{}
   char getChar() override;
-  virtual ~Potion() override{}
+  virtual ~Potion() = 0;
 };
 
 #endif

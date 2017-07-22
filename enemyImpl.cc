@@ -1,8 +1,12 @@
 #include "enemyImpl.h"
 
+int EnemyImpl::damage(float atk, float def){
+  return ceil((100/(100+def))*atk);
+}
+
 void EnemyImpl::defaultAttack(Player &p){
   if(rand()%2 == 0){
-    int damage = Enemy::damage(this->getAtk(), p.getDef());
+    int damage = damage(this->getAtk(), p.getDef());
     int newHp = p.getHp() - damage;
     p.getHp() = (newHp >= 0)? newHp : 0;
     string ws = " ";
@@ -33,8 +37,12 @@ void EnemyImpl::attack(Goblin &p){
   defaultAttack(p);
 }
 
+void EnemyImpl::attack(Zombie &p){
+  defaultAttack(p);
+}
+
 void EnemyImpl::defaultAttacked(Player &p){
-  int damage = Enemy::damage(p.getAtk(), this->getDef());
+  int damage = damage(p.getAtk(), this->getDef());
   int newHp = this->getHp() - damage;
   this->getHp() = (newHp >= 0)? newHp : 0;
   if(this->getHp() <= 0) p.getGold() += this->getDrop();
@@ -67,4 +75,12 @@ void EnemyImpl::attacked(Troll &p){
 void EnemyImpl::attacked(Goblin &p){
   defaultAttacked(p);
   if(this->getHp() <= 0) p.getGold() += 5;
+}
+
+void EnemyImpl::attacked(Ghost &p){
+  defaultAttacked(p);
+}
+
+void EnemyImpl::attacked(Zombie &p){
+  defaultAttacked(p);
 }

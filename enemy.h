@@ -1,6 +1,7 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 #include <cstdlib>
+#include <cmath>
 #include "object.h"
 
 class Player;
@@ -13,11 +14,7 @@ class Goblin;
 class Enemy : public Object{
   int hp, atk, def, drop; // status
 
-protected:
-  int damage(float atk, float def);
-
 public:
-
   //ctor
   Enemy(int hp, int atk, int def, int drop): hp{hp}, atk{atk}, def{def}, drop{drop}{}
 
@@ -27,11 +24,14 @@ public:
   virtual void attack(Vampire &p) = 0;
   virtual void attack(Troll &p) = 0;
   virtual void attack(Goblin &p) = 0;
+  virtual void attack(Zombie &p) = 0;
   virtual void attacked(Shade &p) = 0;
   virtual void attacked(Drow &p) = 0;
   virtual void attacked(Vampire &p) = 0;
   virtual void attacked(Troll &p) = 0;
   virtual void attacked(Goblin &p) = 0;
+  virtual void attacked(Ghost &p) = 0;
+  virtual void attacked(Zombie &p) = 0;
 
   //Accessor
   int &getHp(){ return hp; }

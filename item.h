@@ -23,6 +23,7 @@ class Item : public Object{
     virtual void used(Vampire &p) = 0;
     virtual void used(Troll &p) = 0;
     virtual void used(Goblin &p) = 0;
+    virtual void used(Zombie &p) = 0;
 
     bool exist();
     bool &usable() { return isUsable; }

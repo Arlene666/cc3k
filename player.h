@@ -30,6 +30,8 @@ public:
   int &getDef();
   int &getGold();
   int getDfHp() const;
+  int getDfAtk() const;
+  int getDfDef() const;
 
   //dtor
   virtual ~Player(){}

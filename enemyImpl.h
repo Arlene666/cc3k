@@ -11,6 +11,7 @@
 
 class EnemyImpl : public Enemy{
 protected:
+  int damage(float atk, float def);
   virtual void defaultAttack(Player &p);
   virtual void defaultAttacked(Player &p);
 
@@ -21,11 +22,14 @@ public:
   virtual void attack(Vampire &p);
   virtual void attack(Troll &p);
   virtual void attack(Goblin &p);
+  virtual void attack(Zombie &p);
   virtual void attacked(Shade &p);
   virtual void attacked(Drow &p);
   virtual void attacked(Vampire &p);
   virtual void attacked(Troll &p);
   virtual void attacked(Goblin &p);
+  virtual void attacked(Ghost &p);
+  virtual void attacked(Zombie &p);
   virtual ~EnemyImpl() override{}
 };
 

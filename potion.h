@@ -8,7 +8,7 @@
 #include "troll.h"
 #include "goblin.h"
 
-class Potion : public Item {
+class Potion : public ItemImpl {
 public:
   Potion(): Item{true}{}
   char getChar() override;

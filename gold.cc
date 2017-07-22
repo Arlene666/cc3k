@@ -1,36 +1,12 @@
 #include "gold.h"
 
-Gold::Gold(int n, bool isUsable): Item{isUsable}, pile{n} {}
+void Gold::usedDefault(Player &p){
+  if(isUsable){
+    p.getGold() += pile;
+    isUsed = true;
+  }
+}
 
-void Gold::used(Shade &p){
-  if(isUsable){
-    p.getGold() += pile;
-    isUsed = true;
-  }
-}
-void Gold::used(Drow &p){
-  if(isUsable){
-    p.getGold() += pile;
-    isUsed = true;
-  }
-}
-void Gold::used(Vampire &p){
-  if(isUsable){
-    p.getGold() += pile;
-    isUsed = true;
-  }
-}
-void Gold::used(Troll &p){
-  if(isUsable){
-    p.getGold() += pile;
-    isUsed = true;
-  }
-}
-void Gold::used(Goblin &p){
-  if(isUsable){
-    p.getGold() += pile;
-    isUsed = true;
-  }
-}
+Gold::Gold(int n, bool isUsable): Item{isUsable}, pile{n} {}
 
 char Gold::getChar(){ return 'G'; }

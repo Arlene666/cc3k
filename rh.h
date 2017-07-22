@@ -3,15 +3,13 @@
 #include "potion.h"
 
 class RH : public Potion {
-    public:
-    RH();
-    std::string whoAmI(){ return "RH"; }
-    void used(Shade &p) override;
-    void used(Drow &p) override;
-    void used(Vampire &p) override;
-    void used(Troll &p) override;
-    void used(Goblin &p) override;
-    ~RH(){}
+protected:
+  void defaultUsed(Player &p) override;
+public:
+  RH();
+  std::string whoAmI(){ return "RH"; }
+  void used(Drow &p) override;
+  ~RH(){}
 };
 
 #endif

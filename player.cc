@@ -11,3 +11,5 @@ int &Player::getAtk() { return atk; }
 int &Player::getDef() { return def; }
 int &Player::getGold() { return gold; }
 int Player::getDfHp() const { return initHp; }
+int Player::getDfAtk() const { return initAtk; }
+int Player::getDfDef() const { return initDef; }

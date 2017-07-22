@@ -12,3 +12,14 @@ Bonus Feeatures:
             however if enemy cannot chase the PC (when PC is in the corridor or
             more than three objects lined as a wall between PC and enemy) then
             enemy does not move and prepared for wait.
+3. New player characters: Phantm and Zombie
+    Enable: Just select 'p' or 'z' when selecting the player race.
+    Info:   Phantom
+              Has 100% chance to cause the enemy character to miss in combat.
+              Cannot use potions nor pickup golds.
+            Zombie
+              Atk increases by 1 to as HP decrease by 1.
+4. New enemy character: Ailen
+    Enable: Answer 'y' when asked "Extra Enemy?" after selecting the player race.
+    Info:   Ailen
+              Decreases PC's Def by 1 in each successful attack.

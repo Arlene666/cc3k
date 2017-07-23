@@ -2,6 +2,6 @@
 
 std::string Object::whoAmI(){ return whoAmIImpl(); }
 bool Object::exist(){ return existImpl(); }
-char Object::getChar(){ return getChar(); }
+char Object::getChar(){ return getCharImpl(); }
 
 Object::~Object(){}

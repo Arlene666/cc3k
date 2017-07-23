@@ -16,17 +16,25 @@ class Item : public Object{
     bool isUsable;
     bool isUsed;
 
+    virtual void usedImpl(Shade &p) = 0;
+    virtual void usedImpl(Drow &p) = 0;
+    virtual void usedImpl(Vampire &p) = 0;
+    virtual void usedImpl(Troll &p) = 0;
+    virtual void usedImpl(Goblin &p) = 0;
+    virtual void usedImpl(Phantom &p) = 0;
+    virtual void usedImpl(Zombie &p) = 0;
+
   public:
     Item(bool isUsable): isUsable{isUsable}, isUsed{false}{}
 
     // visitor pattern: visitor
-    virtual void used(Shade &p) = 0;
-    virtual void used(Drow &p) = 0;
-    virtual void used(Vampire &p) = 0;
-    virtual void used(Troll &p) = 0;
-    virtual void used(Goblin &p) = 0;
-    virtual void used(Phantom &p) = 0;
-    virtual void used(Zombie &p) = 0;
+    void used(Shade &p);
+    void used(Drow &p);
+    void used(Vampire &p);
+    void used(Troll &p);
+    void used(Goblin &p);
+    void used(Phantom &p);
+    void used(Zombie &p);
 
     bool exist();
     //Accessor

@@ -7,7 +7,7 @@ void BD::defaultUsed(Player &p){
   isUsed = true;
   Object::message += "PC uses BD.";
 }
-void BD::used(Drow &p){
+void BD::usedImpl(Drow &p){
   p.getDef() += 7;
   isUsed = true;
   Object::message += "PC uses BD.";

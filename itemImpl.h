@@ -12,16 +12,16 @@
 class ItemImpl : public Item{
   protected:
     virtual void defaultUsed(Player &p) = 0;
+    virtual void usedImpl(Shade &p);
+    virtual void usedImpl(Drow &p);
+    virtual void usedImpl(Vampire &p);
+    virtual void usedImpl(Troll &p);
+    virtual void usedImpl(Goblin &p);
+    virtual void usedImpl(Phantom &p);
+    virtual void usedImpl(Zombie &p);
 
   public:
     ItemImpl(bool isUsable): Item{isUsable}{}
-    virtual void used(Shade &p);
-    virtual void used(Drow &p);
-    virtual void used(Vampire &p);
-    virtual void used(Troll &p);
-    virtual void used(Goblin &p);
-    virtual void used(Phantom &p);
-    virtual void used(Zombie &p);
     virtual ~ItemImpl() = 0;
 };
 

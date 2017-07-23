@@ -5,10 +5,10 @@
 class PH : public Potion {
 protected:
   void defaultUsed(Player &p) override;
+  void usedImpl(Drow &p) override;
 public:
   PH();
   std::string whoAmI(){ return "PH"; }
-  void used(Drow &p) override;
   ~PH() override{}
 };
 

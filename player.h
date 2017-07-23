@@ -8,6 +8,12 @@ class Player{
   //status
   int hp, initHp, atk, initAtk, def, initDef, gold;
 
+protected:
+  virtual void attackImpl(Enemy &e) = 0;
+  virtual void attackedImpl(Enemy &e) = 0;
+  virtual void useImpl(Item &i) = 0;
+  virtual void initAtkDefImpl();
+
 public:
 
   //ctor
@@ -15,13 +21,13 @@ public:
   hp{hp}, initHp{hp}, atk{atk}, initAtk{atk}, def{def}, initDef{def}, gold{0}{}
 
   //Visitor Pattern: acceptor
-  virtual void attack(Enemy &e) = 0;
+  void attack(Enemy &e);
   //Visitor Pattern: acceptor
-  virtual void attacked(Enemy &e) = 0;
+  void attacked(Enemy &e);
   //Visitor Pattern: acceptor
-  virtual void use(Item &i) = 0;
+  void use(Item &i);
 
-  virtual void initAtkDef();
+  void initAtkDef();
   bool isDead();
 
   //accessor

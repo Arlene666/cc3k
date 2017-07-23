@@ -7,7 +7,7 @@ void Elf::defaultAttack(Player &p){
   defaultAttackImpl(p);
 }
 
-void Elf::attack(Drow &p){
+void Elf::attackImpl(Drow &p){
   defaultAttackImpl(p);
 }
 

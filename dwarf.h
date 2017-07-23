@@ -3,9 +3,10 @@
 #include "enemyImpl.h"
 
 class Dwarf : public EnemyImpl {
+protected:
+  void attackedImpl(Vampire &p) override;
 public:
   Dwarf(): EnemyImpl{100, 20, 30, rand()%2+1} {}
-  void attacked(Vampire &p) override;
   char getChar() override;
   ~Dwarf();
 };

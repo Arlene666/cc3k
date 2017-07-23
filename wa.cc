@@ -8,7 +8,7 @@ void WA::defaultUsed(Player &p){
   isUsed = true;
   Object::message += "PC uses WA.";
 }
-void WA::used(Drow &p){
+void WA::usedImpl(Drow &p){
   int &atk = p.getAtk();
   atk = std::max(atk-7, 0);
   isUsed = true;

@@ -9,7 +9,7 @@ void RH::defaultUsed(Player &p){
   Object::message += "PC uses RH.";
 }
 
-void RH::used(Drow &p){
+void RH::usedImpl(Drow &p){
   int &hp = p.getHp();
   hp = std::max(hp+15, p.getDfHp());
   isUsed = true;

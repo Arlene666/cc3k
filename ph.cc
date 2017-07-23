@@ -9,7 +9,7 @@ void PH::defaultUsed(Player &p){
   Object::message += "PC uses PH.";
 }
 
-void PH::used(Drow &p){
+void PH::usedImpl(Drow &p){
   int &Hp = p.getHp();
   Hp = std::max(Hp-15, 0);
   isUsed = true;

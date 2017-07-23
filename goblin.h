@@ -3,11 +3,12 @@
 #include "player.h"
 
 class Goblin : public Player{
+protected:
+  void attackImpl(Enemy &e);
+  void attackedImpl(Enemy &e);
+  void useImpl(Item &i);
 public:
   Goblin(): Player{110, 15, 20} {}
-  void attack(Enemy &e);
-  void attacked(Enemy &e);
-  void use(Item &i);
   ~Goblin();
 };
 

@@ -1,7 +1,7 @@
 #include "troll.h"
 
-void Troll::attack(Enemy &e){ e.attacked(*this); }
-void Troll::attacked(Enemy &e){ e.attack(*this); }
-void Troll::use(Item &i){ i.used(*this); }
+void Troll::attackImpl(Enemy &e){ e.attacked(*this); }
+void Troll::attackedImpl(Enemy &e){ e.attack(*this); }
+void Troll::useImpl(Item &i){ i.used(*this); }
 
 Troll::~Troll(){}

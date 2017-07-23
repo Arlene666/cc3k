@@ -3,11 +3,12 @@
 #include "player.h"
 
 class Phantom : public Player{
+protected:
+  void attackImpl(Enemy &e);
+  void attackedImpl(Enemy &e);
+  void useImpl(Item &i);
 public:
   Phantom(): Player{1, 25, 25} {}
-  void attack(Enemy &e);
-  void attacked(Enemy &e);
-  void use(Item &i);
   ~Phantom();
 };
 

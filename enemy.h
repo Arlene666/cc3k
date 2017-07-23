@@ -16,25 +16,41 @@ class Zombie;
 class Enemy : public Object{
   int hp, atk, def, drop; // status
 
+protected:
+  virtual void attackImpl(Shade &p) = 0;
+  virtual void attackImpl(Drow &p) = 0;
+  virtual void attackImpl(Vampire &p) = 0;
+  virtual void attackImpl(Troll &p) = 0;
+  virtual void attackImpl(Goblin &p) = 0;
+  virtual void attackImpl(Phantom &p) = 0;
+  virtual void attackImpl(Zombie &p) = 0;
+  virtual void attackedImpl(Shade &p) = 0;
+  virtual void attackedImpl(Drow &p) = 0;
+  virtual void attackedImpl(Vampire &p) = 0;
+  virtual void attackedImpl(Troll &p) = 0;
+  virtual void attackedImpl(Goblin &p) = 0;
+  virtual void attackedImpl(Phantom &p) = 0;
+  virtual void attackedImpl(Zombie &p) = 0;
+
 public:
   //ctor
   Enemy(int hp, int atk, int def, int drop): hp{hp}, atk{atk}, def{def}, drop{drop}{}
 
   //Visitor Pattern: visitor
-  virtual void attack(Shade &p) = 0;
-  virtual void attack(Drow &p) = 0;
-  virtual void attack(Vampire &p) = 0;
-  virtual void attack(Troll &p) = 0;
-  virtual void attack(Goblin &p) = 0;
-  virtual void attack(Phantom &p) = 0;
-  virtual void attack(Zombie &p) = 0;
-  virtual void attacked(Shade &p) = 0;
-  virtual void attacked(Drow &p) = 0;
-  virtual void attacked(Vampire &p) = 0;
-  virtual void attacked(Troll &p) = 0;
-  virtual void attacked(Goblin &p) = 0;
-  virtual void attacked(Phantom &p) = 0;
-  virtual void attacked(Zombie &p) = 0;
+  void attack(Shade &p);
+  void attack(Drow &p);
+  void attack(Vampire &p);
+  void attack(Troll &p);
+  void attack(Goblin &p);
+  void attack(Phantom &p);
+  void attack(Zombie &p);
+  void attacked(Shade &p);
+  void attacked(Drow &p);
+  void attacked(Vampire &p);
+  void attacked(Troll &p);
+  void attacked(Goblin &p);
+  void attacked(Phantom &p);
+  void attacked(Zombie &p);
 
   //Accessor
   int &getHp(){ return hp; }
@@ -47,7 +63,7 @@ public:
   bool exist();
 
   //dtor
-  virtual ~Enemy() = 0;
+  ~Enemy();
 
 };
 

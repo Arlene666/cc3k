@@ -2,7 +2,7 @@
 
 Orcs::~Orcs(){}
 
-void Orcs::attack(Goblin &p) {
+void Orcs::attackImpl(Goblin &p) {
   if(rand()%2 == 0){
     int damage = EnemyImpl::damage(this->getAtk(), p.getDef()) * 3 / 2;
     p.getHp() = max(p.getHp()-damage, 0);

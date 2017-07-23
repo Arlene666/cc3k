@@ -3,11 +3,12 @@
 #include "player.h"
 
 class Drow : public Player{
+protected:
+  void attackImpl(Enemy &e);
+  void attackedImpl(Enemy &e);
+  void useImpl(Item &i);
 public:
   Drow(): Player{150, 25, 25} {}
-  void attack(Enemy &e);
-  void attacked(Enemy &e);
-  void use(Item &i);
   ~Drow();
 };
 

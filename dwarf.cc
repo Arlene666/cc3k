@@ -1,10 +1,10 @@
 #include "dwarf.h"
 
-Dwarf::~Dwarf(){}
-
-void Dwarf::attacked(Vampire &p){
+void Dwarf::attackedImpl(Vampire &p){
   defaultAttacked(p);
   p.getHp() = max(p.getHp()-5, 0);
 }
+
+Dwarf::~Dwarf(){}
 
 char Dwarf::getChar(){ return 'W'; }

@@ -1,29 +1,29 @@
 #include "itemImpl.h"
 
-void ItemImpl::used(Shade &p){
+void ItemImpl::usedImpl(Shade &p){
   defaultUsed(p);
 }
 
-void ItemImpl::used(Drow &p){
+void ItemImpl::usedImpl(Drow &p){
   defaultUsed(p);
 }
 
-void ItemImpl::used(Vampire &p){
+void ItemImpl::usedImpl(Vampire &p){
   defaultUsed(p);
 }
 
-void ItemImpl::used(Troll &p){
+void ItemImpl::usedImpl(Troll &p){
   defaultUsed(p);
 }
 
-void ItemImpl::used(Goblin &p){
+void ItemImpl::usedImpl(Goblin &p){
   defaultUsed(p);
 }
 
-void ItemImpl::used(Phantom &p){
+void ItemImpl::usedImpl(Phantom &p){
 }
 
-void ItemImpl::used(Zombie &p){
+void ItemImpl::usedImpl(Zombie &p){
   defaultUsed(p);
 }
 

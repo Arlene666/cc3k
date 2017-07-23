@@ -5,9 +5,9 @@
 class Halfling : public EnemyImpl {
 protected:
   void defaultAttacked(Player &p) override;
+  void attackedImpl(Vampire &p) override;
 public:
   Halfling(): EnemyImpl{100, 15, 20, rand()%2+1} {}
-  void attacked(Vampire &p) override;
   char getChar() override;
   ~Halfling();
 };

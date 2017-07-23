@@ -8,7 +8,7 @@ void Halfling::defaultAttacked(Player &p){
   }
 }
 
-void Halfling::attacked(Vampire &p){
+void Halfling::attackedImpl(Vampire &p){
   if(rand()%2 == 0){
     defaultAttackedImpl(p);
     p.getHp() += 5;

@@ -8,7 +8,7 @@ void BA::defaultUsed(Player &p){
   Object::message += "PC uses BA.";
 }
 
-void BA::used(Drow &p){
+void BA::usedImpl(Drow &p){
   p.getAtk() += 7;
   isUsed = true;
   Object::message += "PC uses BA.";

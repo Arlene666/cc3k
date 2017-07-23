@@ -19,22 +19,23 @@ protected:
   virtual void defaultAttack(Player &p);
   virtual void defaultAttacked(Player &p);
 
+  virtual void attackImpl(Shade &p);
+  virtual void attackImpl(Drow &p);
+  virtual void attackImpl(Vampire &p);
+  virtual void attackImpl(Troll &p);
+  virtual void attackImpl(Goblin &p);
+  virtual void attackImpl(Phantom &p);
+  virtual void attackImpl(Zombie &p);
+  virtual void attackedImpl(Shade &p);
+  virtual void attackedImpl(Drow &p);
+  virtual void attackedImpl(Vampire &p);
+  virtual void attackedImpl(Troll &p);
+  virtual void attackedImpl(Goblin &p);
+  virtual void attackedImpl(Phantom &p);
+  virtual void attackedImpl(Zombie &p);
+
 public:
   EnemyImpl(int hp, int atk, int def, int drop): Enemy(hp, atk, def, drop){}
-  virtual void attack(Shade &p);
-  virtual void attack(Drow &p);
-  virtual void attack(Vampire &p);
-  virtual void attack(Troll &p);
-  virtual void attack(Goblin &p);
-  virtual void attack(Phantom &p);
-  virtual void attack(Zombie &p);
-  virtual void attacked(Shade &p);
-  virtual void attacked(Drow &p);
-  virtual void attacked(Vampire &p);
-  virtual void attacked(Troll &p);
-  virtual void attacked(Goblin &p);
-  virtual void attacked(Phantom &p);
-  virtual void attacked(Zombie &p);
   virtual ~EnemyImpl() = 0;
 };
 

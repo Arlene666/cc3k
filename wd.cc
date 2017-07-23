@@ -8,7 +8,7 @@ void WD::defaultUsed(Player &p){
   isUsed = true;
   Object::message += "PC uses WD.";
 }
-void WD::used(Drow &p){
+void WD::usedImpl(Drow &p){
   int &def = p.getDef();
   def = std::max(def-7, 0);
   isUsed = true;

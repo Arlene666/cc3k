@@ -37,64 +37,64 @@ void EnemyImpl::defaultAttacked(Player &p){
   defaultAttackedImpl(p);
 }
 
-void EnemyImpl::attack(Shade &p){
+void EnemyImpl::attackImpl(Shade &p){
   defaultAttack(p);
 }
 
-void EnemyImpl::attack(Drow &p){
+void EnemyImpl::attackImpl(Drow &p){
   defaultAttack(p);
 }
 
-void EnemyImpl::attack(Vampire &p){
+void EnemyImpl::attackImpl(Vampire &p){
   defaultAttack(p);
 }
 
-void EnemyImpl::attack(Troll &p){
+void EnemyImpl::attackImpl(Troll &p){
   defaultAttack(p);
 }
 
-void EnemyImpl::attack(Goblin &p){
+void EnemyImpl::attackImpl(Goblin &p){
   defaultAttack(p);
 }
 
-void EnemyImpl::attack(Phantom &p){
+void EnemyImpl::attackImpl(Phantom &p){
   string ws = " ";
   Object::message += ws + getChar() + " missed.";
 }
 
 
-void EnemyImpl::attack(Zombie &p){
+void EnemyImpl::attackImpl(Zombie &p){
   defaultAttack(p);
 }
 
 
-void EnemyImpl::attacked(Shade &p){
+void EnemyImpl::attackedImpl(Shade &p){
   defaultAttacked(p);
 }
 
-void EnemyImpl::attacked(Drow &p){
+void EnemyImpl::attackedImpl(Drow &p){
   defaultAttacked(p);
 }
 
-void EnemyImpl::attacked(Vampire &p){
+void EnemyImpl::attackedImpl(Vampire &p){
   defaultAttacked(p);
   p.getHp() += 5;
 }
 
-void EnemyImpl::attacked(Troll &p){
+void EnemyImpl::attackedImpl(Troll &p){
   defaultAttacked(p);
 }
 
-void EnemyImpl::attacked(Goblin &p){
+void EnemyImpl::attackedImpl(Goblin &p){
   defaultAttacked(p);
   if(this->getHp() <= 0) p.getGold() += 5;
 }
 
-void EnemyImpl::attacked(Phantom &p){
+void EnemyImpl::attackedImpl(Phantom &p){
   defaultAttacked(p);
 }
 
-void EnemyImpl::attacked(Zombie &p){
+void EnemyImpl::attackedImpl(Zombie &p){
   defaultAttacked(p);
 }
 

@@ -1,7 +1,5 @@
 #include "alien.h"
 
-Alien::~Alien(){}
-
 void Alien::defaultAttack(Player &p){
   if(rand()%2 == 0){
     int damage = EnemyImpl::damage(this->getAtk(), p.getDef());
@@ -15,4 +13,6 @@ void Alien::defaultAttack(Player &p){
   }
 }
 
-char Alien::getChar(){ return 'A'; }
+char Alien::getCharImpl(){ return 'A'; }
+
+Alien::~Alien(){}

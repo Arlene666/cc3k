@@ -15,7 +15,7 @@ void Enemy::attacked(Goblin &p){ attackedImpl(p); }
 void Enemy::attacked(Phantom &p){ attackedImpl(p); }
 void Enemy::attacked(Zombie &p){ attackedImpl(p); }
 
-bool Enemy::exist(){
+bool Enemy::existImpl(){
   return hp > 0;
 }
 

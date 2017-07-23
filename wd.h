@@ -6,9 +6,9 @@ class WD : public Potion {
 protected:
   void defaultUsed(Player &p) override;
   void usedImpl(Drow &p) override;
+  std::string whoAmIImpl(){ return "WD"; }
 public:
   WD();
-  std::string whoAmI(){ return "WD"; }
   ~WD() override{}
 };
 

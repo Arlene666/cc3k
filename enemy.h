@@ -32,6 +32,8 @@ protected:
   virtual void attackedImpl(Phantom &p) = 0;
   virtual void attackedImpl(Zombie &p) = 0;
 
+  std::string whoAmIImpl(){ return "Enemy"; }
+  bool existImpl();
 public:
   //ctor
   Enemy(int hp, int atk, int def, int drop): hp{hp}, atk{atk}, def{def}, drop{drop}{}
@@ -57,10 +59,6 @@ public:
   int &getAtk(){ return atk; }
   int &getDef(){ return def; }
   int &getDrop(){ return drop; }
-
-  std::string whoAmI(){ return "Enemy"; }
-
-  bool exist();
 
   //dtor
   ~Enemy();

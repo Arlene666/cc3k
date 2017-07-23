@@ -4,9 +4,10 @@
 #include "itemImpl.h"
 
 class Potion : public ItemImpl {
+protected:
+  char getCharImpl() override;
 public:
   Potion(): ItemImpl{true}{}
-  char getChar() override;
   virtual ~Potion() = 0;
 };
 

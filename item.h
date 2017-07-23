@@ -24,6 +24,8 @@ class Item : public Object{
     virtual void usedImpl(Phantom &p) = 0;
     virtual void usedImpl(Zombie &p) = 0;
 
+    bool existImpl();
+
   public:
     Item(bool isUsable): isUsable{isUsable}, isUsed{false}{}
 
@@ -36,7 +38,6 @@ class Item : public Object{
     void used(Phantom &p);
     void used(Zombie &p);
 
-    bool exist();
     //Accessor
     bool &usable() { return isUsable; }
 

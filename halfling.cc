@@ -17,6 +17,6 @@ void Halfling::attackedImpl(Vampire &p){
   }
 }
 
-Halfling::~Halfling(){}
+char Halfling::getCharImpl(){ return 'L'; }
 
-char Halfling::getChar(){ return 'L'; }
+Halfling::~Halfling(){}

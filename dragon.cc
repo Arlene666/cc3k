@@ -2,7 +2,7 @@
 
 Dragon::~Dragon(){ if(g != nullptr) g->usable() = true; }
 
-char Dragon::getChar(){ return 'D'; }
+char Dragon::getCharImpl(){ return 'D'; }
 
 void Dragon::setGold(std::shared_ptr<Gold> g, int x, int y){
   this->g = g;

@@ -10,11 +10,11 @@ private:
   int hX, hY;
 protected:
   void defaultAttacked(Player &p) override;
+  char getCharImpl() override;
 
 public:
   Dragon(): EnemyImpl{150, 20, 20, 0} {}
   void setGold(std::shared_ptr<Gold> g, int x, int y);
-  char getChar() override;
   int getHX(){ return hX; }
   int getHY(){ return hY; }
   bool hasHoard(){ return g != nullptr; }

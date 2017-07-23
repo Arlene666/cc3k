@@ -1,7 +1,5 @@
 #include "orcs.h"
 
-Orcs::~Orcs(){}
-
 void Orcs::attackImpl(Goblin &p) {
   if(rand()%2 == 0){
     int damage = EnemyImpl::damage(this->getAtk(), p.getDef()) * 3 / 2;
@@ -14,4 +12,6 @@ void Orcs::attackImpl(Goblin &p) {
   }
 }
 
-char Orcs::getChar(){ return 'O'; }
+char Orcs::getCharImpl(){ return 'O'; }
+
+Orcs::~Orcs(){}

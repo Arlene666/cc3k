@@ -2,4 +2,4 @@
 
 Merchant::~Merchant(){}
 
-char Merchant::getChar(){ return 'M'; }
+char Merchant::getCharImpl(){ return 'M'; }

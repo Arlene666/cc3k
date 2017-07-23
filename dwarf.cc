@@ -5,6 +5,6 @@ void Dwarf::attackedImpl(Vampire &p){
   p.getHp() = max(p.getHp()-5, 0);
 }
 
-Dwarf::~Dwarf(){}
+char Dwarf::getCharImpl(){ return 'W'; }
 
-char Dwarf::getChar(){ return 'W'; }
+Dwarf::~Dwarf(){}

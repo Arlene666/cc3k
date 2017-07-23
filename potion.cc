@@ -1,5 +1,5 @@
 #include "potion.h"
 
-char Potion::getChar(){ return 'P'; }
+char Potion::getCharImpl(){ return 'P'; }
 
 Potion::~Potion(){}

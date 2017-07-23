@@ -1,6 +1,6 @@
 #include "item.h"
 
-bool Item::exist() {
+bool Item::existImpl() {
     return (!isUsed);
 }
 

@@ -2,4 +2,4 @@
 
 Human::~Human(){}
 
-char Human::getChar(){ return 'H'; }
+char Human::getCharImpl(){ return 'H'; }

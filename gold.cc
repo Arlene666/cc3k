@@ -9,4 +9,4 @@ void Gold::defaultUsed(Player &p){
 
 Gold::Gold(int n, bool isUsable): ItemImpl{isUsable}, pile{n} {}
 
-char Gold::getChar(){ return 'G'; }
+char Gold::getCharImpl(){ return 'G'; }

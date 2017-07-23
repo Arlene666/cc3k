@@ -6,11 +6,10 @@ class Gold : public ItemImpl {
     int pile;
   protected:
     void defaultUsed(Player &p) override;
-
+    std::string whoAmIImpl(){ return "Gold"; }
+    char getCharImpl() override;
   public:
     Gold(int n, bool isUsable);
-    std::string whoAmI(){ return "Gold"; }
-    char getChar() override;
     virtual ~Gold() override{}
 };
 

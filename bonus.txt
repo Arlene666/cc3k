@@ -1,25 +1,25 @@
 Bonus Feeatures:
-1. Did not explictly managed memory. All heap allocated objects are controlled
-    using smart pointers.
+1. Did not explicitly manage memory. All heap allocated objects are controlled
+    using smart pointers and vectors.
 2. Implemented intelligence to the enemies.
     Enable: Type 'l' during the game. Player will be asked to enter integer
-            from 1 to 4. The default value is 1. Pl
-    Info:   The integer represents the the blocks of radius where enemies notice
-            the PC. When enemies noticed the PC, they moves towards PC and
-            attacks the PC when the PC is in 1 block radius of the enemy.
+            from 1 to 4. The default value is 1.
+    Info:   The integer represents the the blocks of radius within which enemies can notice
+            the PC. When enemies notice the PC, they move towards PC and
+            attack the PC when the PC is in 1 block radius of the enemy.
             Enemies move randomly as usual when PC is out of the range.
-            Enemies will avoid objects (gold and potion) while chasing the PC,
-            however if enemy cannot chase the PC (when PC is in the corridor or
+            Enemies will avoid objects (gold and potion) while chasing the PC.
+            However if enemy cannot chase the PC (when PC is in the corridor or
             more than three objects lined as a wall between PC and enemy) then
-            enemy does not move and prepared for wait.
-3. New player characters: Phantm and Zombie
+            enemy will stay still and wait for moving.
+3. New player characters: Phantom and Zombie
     Enable: Just select 'p' or 'z' when selecting the player race.
     Info:   Phantom
-              Has 100% chance to cause the enemy character to miss in combat.
-              Cannot use potions nor pickup golds.
+              Has 100% chance to cause the enemy to miss in combat.
+              Cannot use potions or pick up golds.
             Zombie
-              Atk increases by 1 to as HP decrease by 1.
-4. New enemy character: Ailen
+              Atk increases by 1 as HP decreases by 1.
+4. New enemy character: Alien
     Enable: Answer 'y' when asked "Extra Enemy?" after selecting the player race.
-    Info:   Ailen
+    Info:   Alien
               Decreases PC's Def by 1 in each successful attack.
